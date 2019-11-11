@@ -1,0 +1,326 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "ClassDoc": {
+            "properties": {
+                "description": {
+                    "description": "A markdown description of the class.",
+                    "type": "string"
+                },
+                "kind": {
+                    "enum": [
+                        "class"
+                    ],
+                    "type": "string"
+                },
+                "members": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/definitions/FieldDoc"
+                            },
+                            {
+                                "$ref": "#/definitions/MethodDoc"
+                            }
+                        ]
+                    },
+                    "type": "array"
+                },
+                "mixins": {
+                    "items": {
+                        "$ref": "#/definitions/Reference"
+                    },
+                    "type": "array"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "summary": {
+                    "description": "A markdown summary suitable for display in a listing.\nTODO: restrictions on markdown/markup. ie, no headings, only inline\n       formatting?",
+                    "type": "string"
+                },
+                "superclass": {
+                    "$ref": "#/definitions/Reference"
+                }
+            },
+            "required": [
+                "kind",
+                "name"
+            ],
+            "type": "object"
+        },
+        "FieldDoc": {
+            "properties": {
+                "description": {
+                    "description": "A markdown description of the field.",
+                    "type": "string"
+                },
+                "kind": {
+                    "enum": [
+                        "field"
+                    ],
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "privacy": {
+                    "$ref": "#/definitions/Privacy"
+                },
+                "static": {
+                    "type": "boolean"
+                },
+                "summary": {
+                    "description": "A markdown summary suitable for display in a listing.\nTODO: restrictions on markdown/markup. ie, no headings, only inline\n       formatting?",
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "kind",
+                "name"
+            ],
+            "type": "object"
+        },
+        "FunctionDoc": {
+            "properties": {
+                "description": {
+                    "description": "A markdown description of the class.",
+                    "type": "string"
+                },
+                "kind": {
+                    "enum": [
+                        "function"
+                    ],
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "parameters": {
+                    "items": {
+                        "properties": {
+                            "description": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "type": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "name"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "privacy": {
+                    "$ref": "#/definitions/Privacy"
+                },
+                "return": {
+                    "properties": {
+                        "description": {
+                            "type": "string"
+                        },
+                        "type": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "summary": {
+                    "description": "A markdown summary suitable for display in a listing.",
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "kind",
+                "name"
+            ],
+            "type": "object"
+        },
+        "MethodDoc": {
+            "properties": {
+                "description": {
+                    "description": "A markdown description of the class.",
+                    "type": "string"
+                },
+                "kind": {
+                    "enum": [
+                        "method"
+                    ],
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "parameters": {
+                    "items": {
+                        "properties": {
+                            "description": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "type": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "name"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "privacy": {
+                    "$ref": "#/definitions/Privacy"
+                },
+                "return": {
+                    "properties": {
+                        "description": {
+                            "type": "string"
+                        },
+                        "type": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "static": {
+                    "type": "boolean"
+                },
+                "summary": {
+                    "description": "A markdown summary suitable for display in a listing.",
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "kind",
+                "name"
+            ],
+            "type": "object"
+        },
+        "ModuleDoc": {
+            "properties": {
+                "description": {
+                    "description": "A markdown description of the module.",
+                    "type": "string"
+                },
+                "exports": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/definitions/ClassDoc"
+                            },
+                            {
+                                "$ref": "#/definitions/FunctionDoc"
+                            },
+                            {
+                                "$ref": "#/definitions/VariableDoc"
+                            }
+                        ]
+                    },
+                    "type": "array"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "summary": {
+                    "description": "A markdown summary suitable for display in a listing.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "path"
+            ],
+            "type": "object"
+        },
+        "Privacy": {
+            "enum": [
+                "private",
+                "protected",
+                "public"
+            ],
+            "type": "string"
+        },
+        "Reference": {
+            "description": "A reference to an export of a module.\n\nAll references are required to be publically accessible, so the canonical\nrepresentation of a refernce it the export it's available from.",
+            "properties": {
+                "module": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "package": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "type": "object"
+        },
+        "VariableDoc": {
+            "properties": {
+                "description": {
+                    "description": "A markdown description of the class.",
+                    "type": "string"
+                },
+                "kind": {
+                    "enum": [
+                        "variable"
+                    ],
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "summary": {
+                    "description": "A markdown summary suitable for display in a listing.",
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "kind",
+                "name"
+            ],
+            "type": "object"
+        }
+    },
+    "description": "The top-level interface of a custom-elements.json file.\n\ncustom-elements.json documents all the elements in a single npm package,\nacross all modules within the package. Elements may be exported from multiple\nmodules with re-exports, but as a rule, elements in this file should be\nincluded once in the \"canonical\" module that they're exported from.",
+    "properties": {
+        "modules": {
+            "description": "An array of the modules this package contains.",
+            "items": {
+                "$ref": "#/definitions/ModuleDoc"
+            },
+            "type": "array"
+        },
+        "version": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "modules",
+        "version"
+    ],
+    "type": "object"
+}
+

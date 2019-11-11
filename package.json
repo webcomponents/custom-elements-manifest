@@ -1,0 +1,24 @@
+{
+  "name": "custom-elements-json",
+  "version": "0.0.0",
+  "description": "A file format for describing custom elements",
+  "main": "index.js",
+  "scripts": {
+    "generate-json-schema": "typescript-json-schema --required --ignoreErrors schema.ts -o schema.json PackageDoc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webcomponents/custom-elements-json.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/webcomponents/custom-elements-json/issues"
+  },
+  "homepage": "https://github.com/webcomponents/custom-elements-json#readme",
+  "devDependencies": {
+    "typescript": "^3.7.2",
+    "typescript-json-schema": "^0.40.0"
+  }
+}
