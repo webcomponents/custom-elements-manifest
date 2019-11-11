@@ -40,12 +40,10 @@ The `custom-elements.json` follows a version number to allow for a gradual upgra
 The main goal if this version is to document key API surfaces of web components.
 It shall serve as a starting point for adoption in tools and for web component authors.
 
-It is fully based on [Version 1](#version-1).
-It adds all mentioned key points for web components.
-It on purpose does not define a type system. This is left to the next iteration.
-Therefore "type" should be seen as a type hint which can be presented to the end-user as documentation.
+It is fully based on [Version 1.1](./version-history.md#version-1.1).
+It adds all mentioned key API surfaces for web components.
 
-Following is an example which shows all available capabilities.
+Following is an example which shows most common capabilities.
 
 ```json
 {

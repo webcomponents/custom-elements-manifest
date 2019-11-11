@@ -6,7 +6,7 @@ Currently implemented in VS Code. See the details for [vscode-html-languageservi
 
 ```json
 {
-  "version": 1,
+  "version": 1.1,
   "tags": [
     {
       "name": "demo-wc-card",

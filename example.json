@@ -22,6 +22,13 @@
           "description": "Shown at the top of the card",
           "defaultValue": "Your Message",
           "required": true
+        },
+        {
+          "name": "age",
+          "type": {
+            "name": "PersonAge",
+            "import": "demo-wc-card/index.js"
+          }
         }
       ],
       "events": [

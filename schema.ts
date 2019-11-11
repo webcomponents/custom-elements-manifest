@@ -100,7 +100,7 @@ export interface AttributeDoc extends FieldDoc {
   /**
    * The type that the attribute will be serialized/deserialized as.
    */
-  type?: string;
+  type?: Reference | string;
 
   /**
    * The default value of the attribute, if any.
@@ -124,7 +124,7 @@ export interface EventDoc extends FieldDoc {
    * `CustomEvent`, `KeyboardEvent`. If the event type is an event class defined
    * in a module, the reference to it.
    */
-  type?: string;
+  type?: Reference | string;
 }
 
 export interface SlotDoc extends FieldDoc {}
@@ -159,7 +159,7 @@ export interface PropertyDoc extends FieldDoc {
    * If the property type is built-in, this is a string, e.g. string|number|...,
    * If the event type is define in a module then reference to it.
    */
-  type?: string;
+  type?: Reference | string;
 }
 
 export interface MethodDoc extends FieldDoc {
@@ -197,22 +197,23 @@ export type CssPropertyType =
   | "transform-function"
   | "custom-ident";
 
-/********** Experimental ***********/
-
 /**
  * A reference to an export of a module.
  *
  * All references are required to be publicly accessible, so the canonical
  * representation of a reference it the export it's available from.
- *
- * These references can then be used for almost every type as Reference
- * @example
- * type?: Reference | string;
- *
  */
 export interface Reference {
-  // xxx
+  /**
+   * Name of the type
+   */
   name: string;
-  package?: string;
-  module?: string;
+
+  /**
+   * Bare module path to the file offering the named export
+   * Can be translated to import { name } from import
+   * @example
+   * import { foo } from 'package/index.js';
+   */
+  import?: string;
 }
