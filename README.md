@@ -11,7 +11,7 @@ Many tools need some machine-readable descriptions of custom elements: IDEs, doc
 
 There have been, and are currently, several efforts in this area:
 - [Polymer Analyzer](https://github.com/Polymer/tools/tree/master/packages/analyzer)'s `analysis.json` file
-- [`custom-elements.json`](https://github.com/octref/web-components-examples)
+- [VS Code Custom Data format](https://github.com/microsoft/vscode-custom-data/tree/master/samples/webcomponents)
 - https://github.com/JetBrains/web-types
 
 This repository is an effort to bring together tool owners to standardize on a common specification for a description format.
