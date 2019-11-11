@@ -1,0 +1,71 @@
+{
+  "version": 1.2,
+  "tags": [
+    {
+      "name": "demo-wc-card",
+      "path": "./src/demo-wc-card.js",
+      "summary": "A markdown summary suitable for display in a listing.",
+      "description": "This is a container looking like a card with a back and front side you can switch",
+      "attributes": [
+        {
+          "name": "header",
+          "type": "string",
+          "description": "Shown at the top of the card",
+          "defaultValue": "Your Message",
+          "required": true
+        }
+      ],
+      "properties": [
+        {
+          "name": "header",
+          "type": "string",
+          "description": "Shown at the top of the card",
+          "defaultValue": "Your Message",
+          "required": true
+        }
+      ],
+      "events": [
+        {
+          "name": "side-changed",
+          "description": "Fires whenever it switches between front/back",
+          "type": "Event"
+        }
+      ],
+      "methods": [
+        {
+          "name": "toggle",
+          "description": "Switches between front and back card"
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "description": "Content inside the card which displayed on the front page"
+        }
+      ],
+      "cssCustomProperties": [
+        {
+          "name": "--demo-wc-card-front-color",
+          "description": "Font color for the front",
+          "type": "color"
+        }
+      ],
+      "cssShadowParts": [
+        {
+          "name": "header",
+          "description": "Wrapper around the header part"
+        }
+      ],
+      "demos": [
+        {
+          "name": "Default card",
+          "url": "./demo/"
+        },
+        {
+          "name": "Card on the back",
+          "url": "./demo/?path=/story/show-back-side"
+        }
+      ]
+    }
+  ]
+}

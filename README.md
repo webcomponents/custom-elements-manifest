@@ -49,17 +49,18 @@ Following is an example which shows all available capabilities.
 
 ```json
 {
-  "version": 2,
+  "version": 1.2,
   "tags": [
     {
       "name": "demo-wc-card",
+      "path": "./src/demo-wc-card.js",
       "description": "This is a container looking like a card with a back and front side you can switch",
       "attributes": [
         {
           "name": "header",
           "type": "string",
           "description": "Shown at the top of the card",
-          "default": "Your Message",
+          "defaultValue": "Your Message",
           "required": true
         }
       ],
@@ -68,7 +69,7 @@ Following is an example which shows all available capabilities.
           "name": "header",
           "type": "string",
           "description": "Shown at the top of the card",
-          "default": "Your Message",
+          "defaultValue": "Your Message",
           "required": true
         }
       ],
@@ -90,7 +91,7 @@ Following is an example which shows all available capabilities.
           "description": "Content inside the card which displayed on the front page"
         }
       ],
-      "cssProperties": [
+      "cssCustomProperties": [
         {
           "name": "--demo-wc-card-front-color",
           "description": "Font color for the front",
@@ -110,12 +111,16 @@ Following is an example which shows all available capabilities.
 
 #### Changelog
 
-- Added attribute details default [any]
-  - If no value is provided for the property this default value will be used as a fallback
+- Added attribute details defaultValue [any]
+  - If no value is provided for the property this defaultValue will be used as a fallback
 - Added attribute details required [boolean]
   - This property is required and the web component may throw an error if not provided
 - Added attribute details type [string]
   - A type hint to indicate to the end-user what values can be provided
+- Added tag summary
+  - A markdown summary suitable for display in a listing
+- Added tag path
+  - Relative path to the js file which registers this web component
 - Added tag properties
   - Lists all available properties of a web component
 - Added tag property details with name, description, default, required, type
@@ -133,6 +138,29 @@ Following is an example which shows all available capabilities.
   - Type are aligned with [Houdini's CSS Properties and Values API](https://drafts.css-houdini.org/css-properties-values-api)
 - Added tag cssShadowParts with name, description
   - Lists all [CSS Shadow parts](https://www.w3.org/TR/css-shadow-parts-1/)
+- Added tag demos with name, url
+  - List all demos you have for your web component
+
+#### Specification
+
+In the example above you see all of the most common cases however if you need more details take a look at the
+
+- [typescript schema](./schema.ts)
+- [json schema](./schema.json)
+
+You can use these schemas to validate against you own `custom-elements.json`.
+There are various online tools which allow you validate directly in the browser
+
+- [jsonschemalint](https://jsonschemalint.com/#/version/draft-07/markup/json)
+- [json-schema-validator](https://json-schema-validator.herokuapp.com/syntax.jsp)
+
+Or you can use one of the available validators for javascript
+
+- [ajv](https://github.com/epoberezkin/ajv)
+- [djv](https://github.com/korzio/djv)
+- [...](https://json-schema.org/implementations.html#validator-javascript)
+
+Or many other languages.
 
 ## Use Cases
 
@@ -168,3 +196,7 @@ If so links to documentation, source, or ways of interacting with the elements a
 - [api-viewer](https://github.com/web-padawan/api-viewer-element) Displays public api & playground for your web component
 - [@open-wc/demoing-storybook knobs for storybook](https://open-wc.org/demoing-storybook/?path=/docs/decorators-withwebcomponentknobs--example-output) Automatically generates knobs for web components in your storybook
 - [Open Web Components Catalog](https://github.com/open-wc/catalog) WIP Catalog of web components where you get added automatically if you have a `custom-element.json`
+
+#### Playground
+
+If you are looking for a way to find out how your code will be represented in `custom-elements.json` you can can visit the [playground of web-component-analyzer](https://runem.github.io/web-component-analyzer/?format=json). Paste you web component code in and see which data currently can get extracted automatically.

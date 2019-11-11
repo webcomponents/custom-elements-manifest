@@ -1,0 +1,348 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": false,
+    "definitions": {
+        "AttributeDoc": {
+            "additionalProperties": false,
+            "properties": {
+                "defaultValue": {
+                    "description": "The default value of the attribute, if any.\n\nAs attributes are always strings, this is the actual value, not a human\nreadable description.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "A markdown description for the attribute.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the html attribute.",
+                    "type": "string"
+                },
+                "required": {
+                    "description": "The element may throw an error if this attribute is not provided",
+                    "type": "boolean"
+                },
+                "summary": {
+                    "description": "A markdown summary suitable for display in a listing.\nTODO: restrictions on markdown/markup. ie, no headings, only inline\n       formatting?",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type that the attribute will be serialized/deserialized as.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "type": "object"
+        },
+        "CssCustomPropertyDoc": {
+            "additionalProperties": false,
+            "properties": {
+                "defaultValue": {
+                    "description": "The default value of the Css Custom Property, if any.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "A markdown description for the attribute.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the html attribute.",
+                    "type": "string"
+                },
+                "summary": {
+                    "description": "A markdown summary suitable for display in a listing.\nTODO: restrictions on markdown/markup. ie, no headings, only inline\n       formatting?",
+                    "type": "string"
+                },
+                "type": {
+                    "$ref": "#/definitions/CssPropertyType"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "type": "object"
+        },
+        "CssPropertyType": {
+            "description": "For full list see https://drafts.css-houdini.org/css-properties-values-api/#supported-names",
+            "enum": [
+                "angle",
+                "color",
+                "custom-ident",
+                "image",
+                "integer",
+                "length",
+                "length-percentage",
+                "number",
+                "percentage",
+                "resolution",
+                "time",
+                "transform-function",
+                "url"
+            ],
+            "type": "string"
+        },
+        "CssShadowPartDoc": {
+            "additionalProperties": false,
+            "properties": {
+                "description": {
+                    "description": "A markdown description for the attribute.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the html attribute.",
+                    "type": "string"
+                },
+                "summary": {
+                    "description": "A markdown summary suitable for display in a listing.\nTODO: restrictions on markdown/markup. ie, no headings, only inline\n       formatting?",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "type": "object"
+        },
+        "DemoDoc": {
+            "additionalProperties": false,
+            "properties": {
+                "description": {
+                    "description": "A markdown description for the attribute.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the html attribute.",
+                    "type": "string"
+                },
+                "summary": {
+                    "description": "A markdown summary suitable for display in a listing.\nTODO: restrictions on markdown/markup. ie, no headings, only inline\n       formatting?",
+                    "type": "string"
+                },
+                "url": {
+                    "description": "Relative URL of the demo if it's published with the package. Absolute URL\nif it's hosted.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name",
+                "url"
+            ],
+            "type": "object"
+        },
+        "EventDoc": {
+            "additionalProperties": false,
+            "properties": {
+                "description": {
+                    "description": "A markdown description for the attribute.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the html attribute.",
+                    "type": "string"
+                },
+                "summary": {
+                    "description": "A markdown summary suitable for display in a listing.\nTODO: restrictions on markdown/markup. ie, no headings, only inline\n       formatting?",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of the event object that's fired.\n\nIf the event type is built-in, this is a string, e.g. `Event`,\n`CustomEvent`, `KeyboardEvent`. If the event type is an event class defined\nin a module, the reference to it.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "type": "object"
+        },
+        "MethodDoc": {
+            "additionalProperties": false,
+            "properties": {
+                "description": {
+                    "description": "A markdown description for the attribute.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the html attribute.",
+                    "type": "string"
+                },
+                "privacy": {
+                    "$ref": "#/definitions/Privacy"
+                },
+                "summary": {
+                    "description": "A markdown summary suitable for display in a listing.\nTODO: restrictions on markdown/markup. ie, no headings, only inline\n       formatting?",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "type": "object"
+        },
+        "Privacy": {
+            "description": "Properties and modules can have a special privacy",
+            "enum": [
+                "private",
+                "protected",
+                "public"
+            ],
+            "type": "string"
+        },
+        "PropertyDoc": {
+            "additionalProperties": false,
+            "properties": {
+                "defaultValue": {
+                    "description": "The default value of the property, if any.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "A markdown description for the attribute.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the html attribute.",
+                    "type": "string"
+                },
+                "privacy": {
+                    "$ref": "#/definitions/Privacy"
+                },
+                "required": {
+                    "description": "The element may throw an error if this property is not provided",
+                    "type": "boolean"
+                },
+                "summary": {
+                    "description": "A markdown summary suitable for display in a listing.\nTODO: restrictions on markdown/markup. ie, no headings, only inline\n       formatting?",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of the property\n\nIf the property type is built-in, this is a string, e.g. string|number|...,\nIf the event type is define in a module then reference to it.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "type": "object"
+        },
+        "SlotDoc": {
+            "additionalProperties": false,
+            "properties": {
+                "description": {
+                    "description": "A markdown description for the attribute.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the html attribute.",
+                    "type": "string"
+                },
+                "summary": {
+                    "description": "A markdown summary suitable for display in a listing.\nTODO: restrictions on markdown/markup. ie, no headings, only inline\n       formatting?",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "type": "object"
+        },
+        "TagDoc": {
+            "additionalProperties": false,
+            "properties": {
+                "attributes": {
+                    "description": "The attributes that this element is known to understand.",
+                    "items": {
+                        "$ref": "#/definitions/AttributeDoc"
+                    },
+                    "type": "array"
+                },
+                "cssCustomProperties": {
+                    "description": "Css Custom Properties that are used within this element.",
+                    "items": {
+                        "$ref": "#/definitions/CssCustomPropertyDoc"
+                    },
+                    "type": "array"
+                },
+                "cssShadowParts": {
+                    "description": "Css Custom Properties that are used within this element.",
+                    "items": {
+                        "$ref": "#/definitions/CssShadowPartDoc"
+                    },
+                    "type": "array"
+                },
+                "demos": {
+                    "description": "Urls of demos that shows this element in various states.",
+                    "items": {
+                        "$ref": "#/definitions/DemoDoc"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "description": "A markdown description of the module.",
+                    "type": "string"
+                },
+                "events": {
+                    "description": "The events that this element fires.",
+                    "items": {
+                        "$ref": "#/definitions/EventDoc"
+                    },
+                    "type": "array"
+                },
+                "methods": {
+                    "description": "Methods that allow to interact with this element.",
+                    "items": {
+                        "$ref": "#/definitions/MethodDoc"
+                    },
+                    "type": "array"
+                },
+                "name": {
+                    "description": "The tag name of the web component",
+                    "type": "string"
+                },
+                "path": {
+                    "description": "Relative path to the js file which registers this web component",
+                    "type": "string"
+                },
+                "properties": {
+                    "description": "The properties that influence this element.",
+                    "items": {
+                        "$ref": "#/definitions/PropertyDoc"
+                    },
+                    "type": "array"
+                },
+                "slots": {
+                    "description": "The shadow dom content slots that this element accepts.",
+                    "items": {
+                        "$ref": "#/definitions/SlotDoc"
+                    },
+                    "type": "array"
+                },
+                "summary": {
+                    "description": "A markdown summary suitable for display in a listing.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "type": "object"
+        }
+    },
+    "description": "The top-level interface of a custom-elements.json file.\n\ncustom-elements.json documents all the elements in a single npm package,\nacross all modules within the package. Elements may be exported from multiple\nmodules with re-exports, but as a rule, elements in this file should be\nincluded once in the \"canonical\" module that they're exported from.",
+    "properties": {
+        "tags": {
+            "description": "An array of the custom elements this package contains.",
+            "items": {
+                "$ref": "#/definitions/TagDoc"
+            },
+            "type": "array"
+        },
+        "version": {
+            "type": "number"
+        }
+    },
+    "required": [
+        "tags",
+        "version"
+    ],
+    "type": "object"
+}
+
