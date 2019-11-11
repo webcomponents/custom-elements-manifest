@@ -1,14 +1,16 @@
 # custom-elements.json
-A file format for describing custom elements.
+
+A file format for describing custom elements
 
 Its primary goal is to offer an overview of the full public API of multiple custom elements.
 
-Key points for web components are:
+Key API surfaces for web components are:
+
 - properties
 - attributes
 - events
 - methods
-- [slots](https://html.spec.whatwg.org/multipage/scripting.html#the-slot-element) 
+- [slots](https://html.spec.whatwg.org/multipage/scripting.html#the-slot-element)
 - [CSS custom properties](https://drafts.csswg.org/css-variables/#defining-variables)
 - [CSS Shadow parts](https://www.w3.org/TR/css-shadow-parts-1/)
 
@@ -17,6 +19,7 @@ Key points for web components are:
 Many tools need some machine-readable descriptions of custom elements: IDEs, documentation viewers, linters, graphical design tools, etc.
 
 There have been, and are currently, several efforts in this area:
+
 - [Polymer Analyzer](https://github.com/Polymer/tools/tree/master/packages/analyzer)'s `analysis.json` file
 - [`custom-elements.json`](https://github.com/octref/web-components-examples)
 - https://github.com/JetBrains/web-types
@@ -29,15 +32,15 @@ Please join the discussion in [Issues](https://github.com/webcomponents/custom-e
 
 The `custom-elements.json` follows a version number to allow for a gradual upgrade process.
 
-- [Version 2](#version-2)
-- [Version 1](#version-1)
+- [Version 1.2](#version-1.2)
+- [Version 1.1](./version-history.md#version-1.1)
 
-### Version 2
+### Version 1.2
 
-The main goal if this version is to address all key points of web-components.
+The main goal if this version is to document key API surfaces of web components.
 It shall serve as a starting point for adoption in tools and for web component authors.
 
-It is fully based on [Version 1](#version-1). 
+It is fully based on [Version 1](#version-1).
 It adds all mentioned key points for web components.
 It on purpose does not define a type system. This is left to the next iteration.
 Therefore "type" should be seen as a type hint which can be presented to the end-user as documentation.
@@ -80,7 +83,7 @@ Following is an example which shows all available capabilities.
           "name": "toggle",
           "description": "Switches between front and back card"
         }
-      ],      
+      ],
       "slots": [
         {
           "name": "",
@@ -97,13 +100,14 @@ Following is an example which shows all available capabilities.
       "cssShadowParts": [
         {
           "name": "header",
-          "description": "The ",
+          "description": "Wrapper around the header part"
         }
       ]
     }
   ]
 }
 ```
+
 #### Changelog
 
 - Added attribute details default [any]
@@ -129,7 +133,6 @@ Following is an example which shows all available capabilities.
   - Type are aligned with [Houdini's CSS Properties and Values API](https://drafts.css-houdini.org/css-properties-values-api)
 - Added tag cssShadowParts with name, description
   - Lists all [CSS Shadow parts](https://www.w3.org/TR/css-shadow-parts-1/)
-
 
 ## Use Cases
 
@@ -158,38 +161,6 @@ A web component catalog can index packages based on the information that is avai
 A browser extension can list all used web components on a page and then query a catalog to see if meta-information is available.
 If so links to documentation, source, or ways of interacting with the elements api can be provided.
 
-## Version history
-
-### Version 1
-
-Currently implemented in VS Code. See the details for [vscode-html-languageservice](https://github.com/microsoft/vscode-html-languageservice/blob/master/docs/customData.md#custom-data-for-html-language-service).
-
-```json
-{
-  "version": 1,
-  "tags": [
-    {
-      "name": "demo-wc-card",
-      "description": "This is a container looking like a card with a back and front side you can switch",
-      "attributes": [
-        {
-          "name": "current-side",
-          "description": "Defines which side of the card to show. Possible values are A or B",
-          "values": [
-            {
-              "name": "A"
-            },
-            {
-              "name": "B"
-            }
-          ]
-        },
-      ]
-    }
-  ]
-}
-```
-
 ## Existing tools
 
 - [web-component-analyzer](https://github.com/runem/web-component-analyzer) Automatically generates a `custom-elements.json` by analyzing your code
@@ -197,4 +168,3 @@ Currently implemented in VS Code. See the details for [vscode-html-languageservi
 - [api-viewer](https://github.com/web-padawan/api-viewer-element) Displays public api & playground for your web component
 - [@open-wc/demoing-storybook knobs for storybook](https://open-wc.org/demoing-storybook/?path=/docs/decorators-withwebcomponentknobs--example-output) Automatically generates knobs for web components in your storybook
 - [Open Web Components Catalog](https://github.com/open-wc/catalog) WIP Catalog of web components where you get added automatically if you have a `custom-element.json`
-
