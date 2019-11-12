@@ -146,7 +146,8 @@ In the example above you see all of the most common cases however if you need mo
 - [typescript schema](./schema.ts)
 - [json schema](./schema.json)
 
-You can use these schemas to validate against you own `custom-elements.json`.
+You can use these schemas to validate against your own `custom-elements.json`.
+There is also a [full example](./example.json) which you can test the validation on.
 There are various online tools which allow you to validate directly in the browser
 
 - [jsonschemalint](https://jsonschemalint.com/#/version/draft-07/markup/json)
