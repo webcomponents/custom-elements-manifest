@@ -34,7 +34,7 @@
                             "type": "string"
                         }
                     ],
-                    "description": "The type that the attribute will be serialized/deserialized as.\n\nIf the type is built-in, then it is a string, e.g. string|number|...,\nIf the type is define in a module then reference to it."
+                    "description": "The type that the attribute will be serialized/deserialized as.\n\nIf the type is built-in, then it is a string, e.g. string|number|...,\nIf the type is defined in a module then reference to it."
                 }
             },
             "required": [
@@ -236,7 +236,7 @@
                             "type": "string"
                         }
                     ],
-                    "description": "The type of the property\n\nIf the type is built-in, then it is a string, e.g. string|number|...,\nIf the type is define in a module then reference to it."
+                    "description": "The type of the property\n\nIf the type is built-in, then it is a string, e.g. string|number|...,\nIf the type is defined in a module then reference to it."
                 }
             },
             "required": [

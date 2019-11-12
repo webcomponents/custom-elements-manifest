@@ -101,7 +101,7 @@ export interface AttributeDoc extends FieldDoc {
    * The type that the attribute will be serialized/deserialized as.
    *
    * If the type is built-in, then it is a string, e.g. string|number|...,
-   * If the type is define in a module then reference to it.
+   * If the type is defined in a module then reference to it.
    */
   type?: Reference | string;
 
@@ -160,7 +160,7 @@ export interface PropertyDoc extends FieldDoc {
    * The type of the property
    *
    * If the type is built-in, then it is a string, e.g. string|number|...,
-   * If the type is define in a module then reference to it.
+   * If the type is defined in a module then reference to it.
    */
   type?: Reference | string;
 }

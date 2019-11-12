@@ -43,7 +43,7 @@ It shall serve as a starting point for adoption in tools and for web component a
 It is fully based on [Version 1.1](./version-history.md#version-1.1).
 It adds all mentioned key API surfaces for web components.
 
-Following is an example which shows most common capabilities.
+Following is an example which shows the most common capabilities.
 
 ```json
 {
@@ -147,7 +147,7 @@ In the example above you see all of the most common cases however if you need mo
 - [json schema](./schema.json)
 
 You can use these schemas to validate against you own `custom-elements.json`.
-There are various online tools which allow you validate directly in the browser
+There are various online tools which allow you to validate directly in the browser
 
 - [jsonschemalint](https://jsonschemalint.com/#/version/draft-07/markup/json)
 - [json-schema-validator](https://json-schema-validator.herokuapp.com/syntax.jsp)
@@ -197,4 +197,4 @@ If so links to documentation, source, or ways of interacting with the elements a
 
 #### Playground
 
-If you are looking for a way to find out how your code will be represented in `custom-elements.json` you can can visit the [playground of web-component-analyzer](https://runem.github.io/web-component-analyzer/?format=json). Paste you web component code in and see which data currently can get extracted automatically.
+If you are looking for a way to find out how your code will be represented in `custom-elements.json` you can visit the [playground of web-component-analyzer](https://runem.github.io/web-component-analyzer/?format=json). Paste you web component code in and see which data currently can get extracted automatically.
