@@ -1,11 +1,11 @@
 # custom-elements-json
-A file format for describing custom elements
+A file format for describing custom elements.
 
 # Status
 
-This effort is in the initial discussion and requirements-gathering phase. Please join the discussion in [Issues](https://github.com/webcomponents/custom-elements-json/issues).
+This effort is in the initial discussion and requirements-gathering phase. Please join the discussion in the [issues](https://github.com/webcomponents/custom-elements-json/issues).
 
-# Overview
+# Rationale
 
 Many tools need some machine-readable descriptions of custom elements: IDEs, documentation viewers, linters, graphical design tools, etc.
 
@@ -22,10 +22,24 @@ This repository is an effort to bring together tool owners to standardize on a c
 
 Developers using custom elements should be able to get full-featured IDE support including auto-competion, hover-documentation, unknown symbol warnings, etc. These features should be available in HTML files, and in various template syntaxes via template-specific tools.
 
-## Documentation
+## Documentation and demos
 
 Documentation viewers should be able to display all the relevant information about a custom element, such as its tag name, attributes, properties, definition module, CSS variables and parts, etc.
+
+Using a custom-elements.json file, it would be easy to generate or display demos for your component using tools such as [api-viewer-element](https://github.com/web-padawan/api-viewer-element), or automatically generate [Storybook](https://storybook.js.org/) knobs for your components.
 
 ## Linting
 
 Linters should be able to produce warnings based on custom element defintions, such as warning if unknown elements are used in HTML templates.
+
+## Framework Integration
+
+React currently is the only major framework where [custom elements require some special handling](https://custom-elements-everywhere.com/). React will pass all data to a custom element in the form of HTML attributes, and cannot listen for DOM events coming from Custom Elements without the use of a workaround.
+
+The solution for this is to create a wrapper React component that handles these things. Using the custom-elements.json, creation of these wrapper components could be automated.
+
+Some component libraries like [Fast](https://www.fast.design/docs/integrations/react) or [Shoelace](https://shoelace.style/getting-started/usage?id=react) provide specific instructions on how to integrate with certain frameworks. Automating this integration layer could make development easier for both authors of component libraries, but also for consumers of libraries.
+
+## Cataloging
+
+A major usecase of custom-elements.json is that it allows us to reliably detect NPM packages that for certain contain custom elements. These packages could be stored, and displayed on a custom elements catalog, effectively a potential reboot of [webcomponents.org](https://www.webcomponents.org/). This catalog would be able to show rich demos and documentation of the custom elements contained in a package, by importing its components from a CDN like [unpkg](https://unpkg.com/), and its custom-elements.json file.
