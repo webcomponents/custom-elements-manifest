@@ -49,6 +49,30 @@
             ],
             "type": "object"
         },
+        "CustomElementDefinitionDoc": {
+            "properties": {
+                "declaration": {
+                    "$ref": "#/definitions/Reference",
+                    "description": "Reference to the class this custom element is registered with, and its module"
+                },
+                "kind": {
+                    "enum": [
+                        "definition"
+                    ],
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Custom-element name",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "declaration",
+                "kind",
+                "name"
+            ],
+            "type": "object"
+        },
         "FieldDoc": {
             "properties": {
                 "description": {
@@ -230,6 +254,9 @@
                             },
                             {
                                 "$ref": "#/definitions/VariableDoc"
+                            },
+                            {
+                                "$ref": "#/definitions/CustomElementDefinitionDoc"
                             }
                         ]
                     },
@@ -257,7 +284,7 @@
             "type": "string"
         },
         "Reference": {
-            "description": "A reference to an export of a module.\n\nAll references are required to be publically accessible, so the canonical\nrepresentation of a refernce it the export it's available from.",
+            "description": "A reference to an export of a module.\n\nAll references are required to be publically accessible, so the canonical\nrepresentation of a reference is the export it's available from.",
             "properties": {
                 "module": {
                     "type": "string"
