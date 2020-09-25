@@ -31,13 +31,21 @@ export interface ModuleDoc {
   exports?: Array<ExportDoc>;
 }
 
-export type ExportDoc = ClassDoc|FunctionDoc|VariableDoc;
+export type ExportDoc = ClassDoc | FunctionDoc | VariableDoc | CustomElementDefinitionDoc;
+
+export interface CustomElementDefinitionDoc {
+  kind: 'definition';
+  /** Custom-element name */
+  name: string;
+  /** Reference to the class this custom element is registered with, and its module */
+  declaration: Reference;
+}
 
 /**
  * A reference to an export of a module.
  *
  * All references are required to be publically accessible, so the canonical
- * representation of a refernce it the export it's available from.
+ * representation of a reference is the export it's available from.
  */
 export interface Reference {
   name: string;
