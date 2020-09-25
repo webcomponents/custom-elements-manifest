@@ -1,6 +1,6 @@
 /**
  * The top-level interface of a custom-elements.json file.
- * 
+ *
  * custom-elements.json documents all the elements in a single npm package,
  * across all modules within the package. Elements may be exported from multiple
  * modules with re-exports, but as a rule, elements in this file should be
@@ -31,13 +31,19 @@ export interface ModuleDoc {
   exports?: Array<ExportDoc>;
 }
 
-export type ExportDoc = ClassDoc|FunctionDoc|VariableDoc;
+export type ExportDoc = ClassDoc | FunctionDoc | VariableDoc | DefinitionDoc;
+
+export interface DefinitionDoc {
+  kind: string;
+  name: string;
+  declaration: Reference;
+}
 
 /**
  * A reference to an export of a module.
- * 
+ *
  * All references are required to be publically accessible, so the canonical
- * representation of a refernce it the export it's available from.
+ * representation of a reference is the export it's available from.
  */
 export interface Reference {
   name: string;
