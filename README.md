@@ -20,7 +20,7 @@ This repository is an effort to bring together tool owners to standardize on a c
 
 ## Editor Support
 
-Developers using custom elements should be able to get full-featured IDE support including auto-competion, hover-documentation, unknown symbol warnings, etc. These features should be available in HTML files, and in various template syntaxes via template-specific tools.
+Developers using custom elements should be able to get full-featured IDE support including auto-completion, hover-documentation, unknown symbol warnings, etc. These features should be available in HTML files, and in various template syntaxes via template-specific tools.
 
 ## Documentation
 
