@@ -53,8 +53,35 @@ export interface Reference {
   module?: string;
 }
 
+/**
+ * Description of a custom element class.
+ * 
+ * Custom elements are JavaScript classes, so this extends from `ClassDoc` and
+ * adds custom-element-specific features like attributes, events, and slots.
+ * 
+ * Note that `tagName` in this interface is optional. Tag names are not
+ * neccessarily part of a custom element class, but belong to the definition
+ * (often called the "registration") or the `customElements.define()` call.
+ * 
+ * Because classes and tag anmes can only be registered once, there's a
+ * one-to-one relationship between classes and tag names. For ease of use,
+ * we allow the tag name here.
+ * 
+ * Some packages define and register custom elements in separate modules. In
+ * these cases one `ModuleDoc` should contain the `CustomElementDoc` without a
+ * tagName, and another `ModuleDoc` should contain the
+ * `CustomElementDefintionDoc`.
+ */
 export interface CustomElementDoc extends ClassDoc {
-  tagName: string;
+  /**
+   * An optional tag name that should be specified if this is a
+   * self-registering element.
+   * 
+   * Self-registering elements must also include a CustomElementDefintionDoc
+   * in the module's exports.
+   */
+  tagName?: string;
+
   /**
    * The attributes that this element is known to understand.
    */
@@ -128,7 +155,33 @@ export interface SlotDoc {
   name: string;
 
   /**
-   * A markdown description of the slot.
+   * A markdown description of the part.
+   */
+  description?: string;
+}
+
+/**
+ * The description of a CSS Part
+ */
+export interface CssPartDoc {
+  name: string;
+
+  /**
+   * A markdown description for the CSS property.
+   */
+  description?: string;
+}
+
+export interface CssCustomPropertyDoc {
+  /**
+   * The name of the property, including leading `--`.
+   */
+  name: string;
+
+  defaultValue?: string;
+
+  /**
+   * A markdown description for the attribute.
    */
   description?: string;
 }
