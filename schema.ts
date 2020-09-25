@@ -1,6 +1,6 @@
 /**
  * The top-level interface of a custom-elements.json file.
- * 
+ *
  * custom-elements.json documents all the elements in a single npm package,
  * across all modules within the package. Elements may be exported from multiple
  * modules with re-exports, but as a rule, elements in this file should be
@@ -35,7 +35,7 @@ export type ExportDoc = ClassDoc|FunctionDoc|VariableDoc;
 
 /**
  * A reference to an export of a module.
- * 
+ *
  * All references are required to be publically accessible, so the canonical
  * representation of a refernce it the export it's available from.
  */
@@ -96,7 +96,7 @@ export interface EventDoc {
   /**
    * A markdown description of the event.
    */
-  description: string;
+  description?: string;
 
   /**
    * The type of the event object that's fired.
