@@ -4,7 +4,8 @@
   "description": "A file format for describing custom elements",
   "main": "index.js",
   "scripts": {
-    "generate-json-schema": "typescript-json-schema --required --ignoreErrors schema.ts -o schema.json PackageDoc"
+    "format": "prettier schema.ts --write",
+    "generate-json-schema": "typescript-json-schema --required --ignoreErrors schema.ts -o schema.json Package"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/webcomponents/custom-elements-json#readme",
   "devDependencies": {
+    "prettier": "^2.1.2",
     "typescript": "^3.7.2",
     "typescript-json-schema": "^0.40.0"
   }
