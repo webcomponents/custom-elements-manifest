@@ -129,6 +129,7 @@ export interface CustomElementExport {
 export type Declaration =
   | ClassDeclaration
   | FunctionDeclaration
+  | MixinDeclaration
   | VariableDeclaration
   | CustomElement;
 
