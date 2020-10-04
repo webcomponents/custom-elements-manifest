@@ -213,6 +213,8 @@ export interface Attribute {
    */
   description?: string;
 
+  inheritedFrom?: Reference;
+
   /**
    * The type that the attribute will be serialized/deserialized as.
    */
@@ -249,6 +251,8 @@ export interface Event {
    * The type of the event object that's fired.
    */
   type: Type;
+
+  inheritedFrom?: Reference;
 }
 
 export interface Slot {
