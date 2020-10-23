@@ -43,3 +43,7 @@ Some component libraries like [Fast](https://www.fast.design/docs/integrations/r
 ## Cataloging
 
 A major usecase of custom-elements.json is that it allows us to reliably detect NPM packages that for certain contain custom elements. These packages could be stored, and displayed on a custom elements catalog, effectively a potential reboot of [webcomponents.org](https://www.webcomponents.org/). This catalog would be able to show rich demos and documentation of the custom elements contained in a package, by importing its components from a CDN like [unpkg](https://unpkg.com/), and its custom-elements.json file.
+
+## Testing
+
+Tooling would be able to detect whether or not the public API of a custom element has changed, based on a snapshot of the current `custom-elements.json` file to decide the impact of an update, and potentially prevent breaking API change in patch versions.
