@@ -9,11 +9,11 @@
  */
 
 /**
- * The top-level interface of a custom-elements.json file.
+ * The top-level interface of a custom elements manifest file.
  *
  * Because custom elements are JavaScript classes, describing a custom element
  * may require describing arbitrary JavaScript concepts like modules, classes,
- * functions, etc. So custom-elements.json documents are capable of documenting
+ * functions, etc. So custom elements manifests are capable of documenting
  * the elements in a package, as well as those JavaScript concepts.
  *
  * The modules described in a package should be the public entrypoints that
@@ -23,7 +23,7 @@
  */
 export interface Package {
   /**
-   * The version of the custom-elements.json schema used in this file.
+   * The version of the schema used in this file.
    */
   schemaVersion: string;
 

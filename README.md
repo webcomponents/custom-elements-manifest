@@ -1,9 +1,9 @@
-# custom-elements-json
+# custom-elements-manifest
 A file format for describing custom elements.
 
 # Status
 
-This effort is in the initial discussion and requirements-gathering phase. Please join the discussion in the [issues](https://github.com/webcomponents/custom-elements-json/issues).
+This effort is in the initial discussion and requirements-gathering phase. Please join the discussion in the [issues](https://github.com/webcomponents/custom-elements-manifest/issues).
 
 # Rationale
 
@@ -26,7 +26,7 @@ Developers using custom elements should be able to get full-featured IDE support
 
 Documentation viewers should be able to display all the relevant information about a custom element, such as its tag name, attributes, properties, definition module, CSS variables and parts, etc.
 
-Using a custom-elements.json file, it would be easy to generate or display demos for your component using tools such as [api-viewer-element](https://github.com/web-padawan/api-viewer-element), or automatically generate [Storybook](https://storybook.js.org/) knobs for your components.
+Using a custom-elements manifest, it would be easy to generate or display demos for your component using tools such as [api-viewer-element](https://github.com/web-padawan/api-viewer-element), or automatically generate [Storybook](https://storybook.js.org/) knobs for your components.
 
 ## Linting
 
@@ -36,14 +36,14 @@ Linters should be able to produce warnings based on custom element defintions, s
 
 React currently is the only major framework where [custom elements require some special handling](https://custom-elements-everywhere.com/). React will pass all data to a custom element in the form of HTML attributes, and cannot listen for DOM events coming from Custom Elements without the use of a workaround.
 
-The solution for this is to create a wrapper React component that handles these things. Using the custom-elements.json, creation of these wrapper components could be automated.
+The solution for this is to create a wrapper React component that handles these things. Using a custom elements manifest, creation of these wrapper components could be automated.
 
 Some component libraries like [Fast](https://www.fast.design/docs/integrations/react) or [Shoelace](https://shoelace.style/getting-started/usage?id=react) provide specific instructions on how to integrate with certain frameworks. Automating this integration layer could make development easier for both authors of component libraries, but also for consumers of libraries.
 
 ## Cataloging
 
-A major usecase of custom-elements.json is that it allows us to reliably detect NPM packages that for certain contain custom elements. These packages could be stored, and displayed on a custom elements catalog, effectively a potential reboot of [webcomponents.org](https://www.webcomponents.org/). This catalog would be able to show rich demos and documentation of the custom elements contained in a package, by importing its components from a CDN like [unpkg](https://unpkg.com/), and its custom-elements.json file.
+A major use-case of custom elements manifests is that they allow us to reliably detect NPM packages that for certain contain custom elements. These packages could be stored, and displayed on a custom elements catalog, effectively a potential reboot of [webcomponents.org](https://www.webcomponents.org/). This catalog would be able to show rich demos and documentation of the custom elements contained in a package, by importing its components from a CDN like [unpkg](https://unpkg.com/), and its custom elements manifest.
 
 ## Testing
 
-Tooling would be able to detect whether or not the public API of a custom element has changed, based on a snapshot of the current `custom-elements.json` file to decide the impact of an update, and potentially prevent breaking API change in patch versions.
+Tooling would be able to detect whether or not the public API of a custom element has changed, based on a snapshot of the current custom elements manifest file to decide the impact of an update, and potentially prevent breaking API change in patch versions.

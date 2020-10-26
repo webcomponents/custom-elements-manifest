@@ -1,5 +1,5 @@
 {
-  "name": "custom-elements-json",
+  "name": "custom-elements-manifest",
   "version": "0.0.0",
   "description": "A file format for describing custom elements",
   "main": "index.js",
@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/webcomponents/custom-elements-json.git"
+    "url": "git+https://github.com/webcomponents/custom-elements-manifest.git"
   },
   "keywords": [],
   "author": "",
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/webcomponents/custom-elements-json/issues"
+    "url": "https://github.com/webcomponents/custom-elements-manifest/issues"
   },
-  "homepage": "https://github.com/webcomponents/custom-elements-json#readme",
+  "homepage": "https://github.com/webcomponents/custom-elements-manifest#readme",
   "devDependencies": {
     "prettier": "^2.1.2",
     "typescript": "^3.7.2",
