@@ -1,0 +1,679 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "Attribute": {
+            "properties": {
+                "defaultValue": {
+                    "description": "The default value of the attribute, if any.\n\nAs attributes are always strings, this is the actual value, not a human\nreadable description.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "A markdown description.",
+                    "type": "string"
+                },
+                "fieldName": {
+                    "description": "The name of the field this attribute is associated with, if any.",
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "summary": {
+                    "description": "A markdown summary suitable for display in a listing.",
+                    "type": "string"
+                },
+                "type": {
+                    "$ref": "#/definitions/Type",
+                    "description": "The type that the attribute will be serialized/deserialized as."
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "type": "object"
+        },
+        "ClassDeclaration": {
+            "properties": {
+                "description": {
+                    "description": "A markdown description of the class.",
+                    "type": "string"
+                },
+                "kind": {
+                    "enum": [
+                        "class"
+                    ],
+                    "type": "string"
+                },
+                "members": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/definitions/ClassField"
+                            },
+                            {
+                                "$ref": "#/definitions/ClassMethod"
+                            }
+                        ]
+                    },
+                    "type": "array"
+                },
+                "mixins": {
+                    "items": {
+                        "$ref": "#/definitions/Reference"
+                    },
+                    "type": "array"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "summary": {
+                    "description": "A markdown summary suitable for display in a listing.",
+                    "type": "string"
+                },
+                "superclass": {
+                    "$ref": "#/definitions/Reference"
+                }
+            },
+            "required": [
+                "kind",
+                "name"
+            ],
+            "type": "object"
+        },
+        "ClassField": {
+            "properties": {
+                "default": {
+                    "type": "string"
+                },
+                "description": {
+                    "description": "A markdown description of the field.",
+                    "type": "string"
+                },
+                "inheritedFrom": {
+                    "$ref": "#/definitions/Reference"
+                },
+                "kind": {
+                    "enum": [
+                        "field"
+                    ],
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "privacy": {
+                    "$ref": "#/definitions/Privacy"
+                },
+                "static": {
+                    "type": "boolean"
+                },
+                "summary": {
+                    "description": "A markdown summary suitable for display in a listing.",
+                    "type": "string"
+                },
+                "type": {
+                    "$ref": "#/definitions/Type"
+                }
+            },
+            "required": [
+                "kind",
+                "name"
+            ],
+            "type": "object"
+        },
+        "ClassMethod": {
+            "properties": {
+                "description": {
+                    "description": "A markdown description.",
+                    "type": "string"
+                },
+                "inheritedFrom": {
+                    "$ref": "#/definitions/Reference"
+                },
+                "kind": {
+                    "enum": [
+                        "method"
+                    ],
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "parameters": {
+                    "items": {
+                        "$ref": "#/definitions/Parameter"
+                    },
+                    "type": "array"
+                },
+                "privacy": {
+                    "$ref": "#/definitions/Privacy"
+                },
+                "return": {
+                    "properties": {
+                        "description": {
+                            "type": "string"
+                        },
+                        "type": {
+                            "$ref": "#/definitions/Type"
+                        }
+                    },
+                    "type": "object"
+                },
+                "static": {
+                    "type": "boolean"
+                },
+                "summary": {
+                    "description": "A markdown summary suitable for display in a listing.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "kind",
+                "name"
+            ],
+            "type": "object"
+        },
+        "CssCustomProperty": {
+            "properties": {
+                "defaultValue": {
+                    "type": "string"
+                },
+                "description": {
+                    "description": "A markdown description.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the property, including leading `--`.",
+                    "type": "string"
+                },
+                "summary": {
+                    "description": "A markdown summary suitable for display in a listing.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "type": "object"
+        },
+        "CssPart": {
+            "description": "The description of a CSS Part",
+            "properties": {
+                "description": {
+                    "description": "A markdown description.",
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "summary": {
+                    "description": "A markdown summary suitable for display in a listing.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "type": "object"
+        },
+        "CustomElement": {
+            "description": "Description of a custom element class.\n\nCustom elements are JavaScript classes, so this extends from\n`ClassDeclaration` and adds custom-element-specific features like\nattributes, events, and slots.\n\nNote that `tagName` in this interface is optional. Tag names are not\nneccessarily part of a custom element class, but belong to the definition\n(often called the \"registration\") or the `customElements.define()` call.\n\nBecause classes and tag anmes can only be registered once, there's a\none-to-one relationship between classes and tag names. For ease of use,\nwe allow the tag name here.\n\nSome packages define and register custom elements in separate modules. In\nthese cases one `Module` should contain the `CustomElement` without a\ntagName, and another `Module` should contain the\n`CustomElement`.",
+            "properties": {
+                "attributes": {
+                    "description": "The attributes that this element is known to understand.",
+                    "items": {
+                        "$ref": "#/definitions/Attribute"
+                    },
+                    "type": "array"
+                },
+                "cssProperties": {
+                    "items": {
+                        "$ref": "#/definitions/CssCustomProperty"
+                    },
+                    "type": "array"
+                },
+                "demos": {
+                    "items": {
+                        "$ref": "#/definitions/Demo"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "description": "A markdown description of the class.",
+                    "type": "string"
+                },
+                "events": {
+                    "description": "The events that this element fires.",
+                    "items": {
+                        "$ref": "#/definitions/Event"
+                    },
+                    "type": "array"
+                },
+                "kind": {
+                    "enum": [
+                        "class"
+                    ],
+                    "type": "string"
+                },
+                "members": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/definitions/ClassField"
+                            },
+                            {
+                                "$ref": "#/definitions/ClassMethod"
+                            }
+                        ]
+                    },
+                    "type": "array"
+                },
+                "mixins": {
+                    "items": {
+                        "$ref": "#/definitions/Reference"
+                    },
+                    "type": "array"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "parts": {
+                    "items": {
+                        "$ref": "#/definitions/CssPart"
+                    },
+                    "type": "array"
+                },
+                "slots": {
+                    "description": "The shadow dom content slots that this element accepts.",
+                    "items": {
+                        "$ref": "#/definitions/Slot"
+                    },
+                    "type": "array"
+                },
+                "summary": {
+                    "description": "A markdown summary suitable for display in a listing.",
+                    "type": "string"
+                },
+                "superclass": {
+                    "$ref": "#/definitions/Reference"
+                },
+                "tagName": {
+                    "description": "An optional tag name that should be specified if this is a\nself-registering element.\n\nSelf-registering elements must also include a CustomElementExport\nin the module's exports.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "kind",
+                "name"
+            ],
+            "type": "object"
+        },
+        "CustomElementExport": {
+            "description": "A global custom element defintion, ie the result of a\n`customElements.define()` call.\n\nThis is represented as an export because a definition makes the element\navailable outside of the module it's defined it.",
+            "properties": {
+                "declaration": {
+                    "$ref": "#/definitions/Reference",
+                    "description": "A reference to the class or other declaration that implements the\ncustom element."
+                },
+                "kind": {
+                    "enum": [
+                        "custom-element-definition"
+                    ],
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The tag name of the custom element.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "declaration",
+                "kind",
+                "name"
+            ],
+            "type": "object"
+        },
+        "Demo": {
+            "properties": {
+                "description": {
+                    "description": "A markdown description of the demo.",
+                    "type": "string"
+                },
+                "url": {
+                    "description": "Relative URL of the demo if it's published with the package. Absolute URL\nif it's hosted.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "url"
+            ],
+            "type": "object"
+        },
+        "Event": {
+            "properties": {
+                "description": {
+                    "description": "A markdown description.",
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "summary": {
+                    "description": "A markdown summary suitable for display in a listing.",
+                    "type": "string"
+                },
+                "type": {
+                    "$ref": "#/definitions/Type",
+                    "description": "The type of the event object that's fired."
+                }
+            },
+            "required": [
+                "name",
+                "type"
+            ],
+            "type": "object"
+        },
+        "FunctionDeclaration": {
+            "properties": {
+                "description": {
+                    "description": "A markdown description.",
+                    "type": "string"
+                },
+                "kind": {
+                    "enum": [
+                        "function"
+                    ],
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "parameters": {
+                    "items": {
+                        "$ref": "#/definitions/Parameter"
+                    },
+                    "type": "array"
+                },
+                "return": {
+                    "properties": {
+                        "description": {
+                            "type": "string"
+                        },
+                        "type": {
+                            "$ref": "#/definitions/Type"
+                        }
+                    },
+                    "type": "object"
+                },
+                "summary": {
+                    "description": "A markdown summary suitable for display in a listing.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "kind",
+                "name"
+            ],
+            "type": "object"
+        },
+        "JavaScriptExport": {
+            "properties": {
+                "declaration": {
+                    "$ref": "#/definitions/Reference",
+                    "description": "A reference to the exported declaration.\n\nIn the case of aggregating exports, the reference's `module` field must be\ndefined and the `name` field must be `\"*\"`."
+                },
+                "kind": {
+                    "enum": [
+                        "js"
+                    ],
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the exported symbol.\n\nJavaScript has a number of ways to export objects which determine the\ncorrect name to use.\n\n- Default exports must use the name \"default\".\n- Named exports use the name that is exported. If the export is renamed\n   with the \"as\" clause, use the exported name.\n- Aggregating exports (`* from`) should use the name `*`",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "declaration",
+                "kind",
+                "name"
+            ],
+            "type": "object"
+        },
+        "JavaScriptModule": {
+            "properties": {
+                "declarations": {
+                    "description": "The declarations of a module.\n\nFor documentation purposes, all declarations that are reachable from\nexports should be described here. Ie, functions and objects that may be\nproperties of exported objects, or passed as arguments to functions.",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/definitions/ClassDeclaration"
+                            },
+                            {
+                                "$ref": "#/definitions/FunctionDeclaration"
+                            },
+                            {
+                                "$ref": "#/definitions/VariableDeclaration"
+                            },
+                            {
+                                "$ref": "#/definitions/CustomElement"
+                            }
+                        ]
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "description": "A markdown description of the module.",
+                    "type": "string"
+                },
+                "exports": {
+                    "description": "The exports of a module. This includes JavaScript exports and\ncustom element definitions.",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/definitions/JavaScriptExport"
+                            },
+                            {
+                                "$ref": "#/definitions/CustomElementExport"
+                            }
+                        ]
+                    },
+                    "type": "array"
+                },
+                "kind": {
+                    "enum": [
+                        "javascript-module"
+                    ],
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "summary": {
+                    "description": "A markdown summary suitable for display in a listing.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "declarations",
+                "kind",
+                "path"
+            ],
+            "type": "object"
+        },
+        "Parameter": {
+            "properties": {
+                "default": {
+                    "type": "string"
+                },
+                "description": {
+                    "description": "A markdown description of the field.",
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "optional": {
+                    "description": "Whether the parameter is optional. Undefined implies non-optional.",
+                    "type": "boolean"
+                },
+                "summary": {
+                    "description": "A markdown summary suitable for display in a listing.",
+                    "type": "string"
+                },
+                "type": {
+                    "$ref": "#/definitions/Type"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "type": "object"
+        },
+        "Privacy": {
+            "enum": [
+                "private",
+                "protected",
+                "public"
+            ],
+            "type": "string"
+        },
+        "Reference": {
+            "description": "A reference to an export of a module.\n\nAll references are required to be publically accessible, so the canonical\nrepresentation of a reference is the export it's available from.\n\nReferrences to global symbols like `Array`, `HTMLElement`, or `Event`",
+            "properties": {
+                "module": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "package": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "type": "object"
+        },
+        "Slot": {
+            "properties": {
+                "description": {
+                    "description": "A markdown description.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The slot name, or the empty string for an unnamed slot.",
+                    "type": "string"
+                },
+                "summary": {
+                    "description": "A markdown summary suitable for display in a listing.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "type": "object"
+        },
+        "Type": {
+            "properties": {
+                "references": {
+                    "description": "An array of references to the types in the type string.\n\nThese references have optional indices into the type string so that tools\ncan understand the references in the type string independently of the type\nsystem and syntax. For example, a documentation viewer could display the\ntype `Array<FooElement | BarElement>` with cross-references to `FooElement`\nand `BarElement` without understanding arrays, generics, or union types.",
+                    "items": {
+                        "$ref": "#/definitions/TypeReference"
+                    },
+                    "type": "array"
+                },
+                "type": {
+                    "description": "The full string representation of the type, in whatever type syntax is\nused, such as JSDoc, Closure, or TypeScript.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type"
+            ],
+            "type": "object"
+        },
+        "TypeReference": {
+            "description": "A reference that is associated with a type string and optionally a range\nwithin the string.\n\nStart and end must both be present or not present. If they're present, they\nare indices into the associated type string. If they are missing, the entire\ntype string is the symbol referenced and the name should match the type\nstring.",
+            "properties": {
+                "end": {
+                    "type": "number"
+                },
+                "module": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "package": {
+                    "type": "string"
+                },
+                "start": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "type": "object"
+        },
+        "VariableDeclaration": {
+            "properties": {
+                "default": {
+                    "type": "string"
+                },
+                "description": {
+                    "description": "A markdown description of the field.",
+                    "type": "string"
+                },
+                "kind": {
+                    "enum": [
+                        "variable"
+                    ],
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "summary": {
+                    "description": "A markdown summary suitable for display in a listing.",
+                    "type": "string"
+                },
+                "type": {
+                    "$ref": "#/definitions/Type"
+                }
+            },
+            "required": [
+                "kind",
+                "name"
+            ],
+            "type": "object"
+        }
+    },
+    "description": "The top-level interface of a custom-elements.json file.\n\nBecause custom elements are JavaScript classes, describing a custom element\nmay require describing arbitrary JavaScript concepts like modules, classes,\nfunctions, etc. So custom-elements.json documents are capable of documenting\nthe elements in a package, as well as those JavaScript concepts.\n\nThe modules described in a package should be the public entrypoints that\nother packages may import from. Multiple modules may export the same object\nvia re-exports, but in most cases a package should document the single\ncanonical export that should be used.",
+    "properties": {
+        "modules": {
+            "description": "An array of the modules this package contains.",
+            "items": {
+                "$ref": "#/definitions/JavaScriptModule"
+            },
+            "type": "array"
+        },
+        "readme": {
+            "description": "The Markdown to use for the main readme of this package.\n\nThis can be used to override the readme used by Github or npm if that\nfile contains information irrelevant to custom element catalogs and\ndocumentation viewers.",
+            "type": "string"
+        },
+        "schemaVersion": {
+            "description": "The version of the custom-elements.json schema used in this file.",
+            "type": "string"
+        }
+    },
+    "required": [
+        "modules",
+        "schemaVersion"
+    ],
+    "type": "object"
+}
+
