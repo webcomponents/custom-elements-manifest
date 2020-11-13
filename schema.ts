@@ -427,6 +427,9 @@ export interface ClassMethod extends FunctionLike {
  * argument, so consumers of this interface should assume that the return type
  * is the single argument subclassed by this declaration.
  * 
+ * A mixin should only have a superclass if it composes another mixin, and the
+ * superclass should reference that mixin.
+ * 
  * @example
  * 
  * This JavaScript mixin declaration:
