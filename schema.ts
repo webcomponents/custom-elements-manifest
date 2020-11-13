@@ -421,7 +421,7 @@ export interface ClassMethod extends FunctionLike {
  * means a mixin is callable, and has parameters and a return type.
  * 
  * The return type is often hard or impossible to accurately describe in type
- * systems like TypeScript. It requires generics and an `exrtends` operator
+ * systems like TypeScript. It requires generics and an `extends` operator
  * that TypeScript lacks. Therefore it's reccomended that the return type is
  * left empty. The most common form of a mixin function takes a single
  * argument, so consumers of this interface should assume that the return type
