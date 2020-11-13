@@ -44,7 +44,7 @@ export interface Package {
 
 // This type may expand in the future to include JSON, CSS, or HTML
 // modules.
-type Module = JavaScriptModule;
+export type Module = JavaScriptModule;
 
 export interface JavaScriptModule {
   kind: 'javascript-module';
