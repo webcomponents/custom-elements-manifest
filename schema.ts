@@ -131,7 +131,7 @@ export type Declaration =
   | FunctionDeclaration
   | MixinDeclaration
   | VariableDeclaration
-  | CustomElement;
+  | CustomElementDeclaration;
 
 /**
  * A reference to an export of a module.
@@ -149,7 +149,7 @@ export interface Reference {
 }
 
 /**
- * Description of a custom element class.
+ * A description of a custom element class.
  *
  * Custom elements are JavaScript classes, so this extends from
  * `ClassDeclaration` and adds custom-element-specific features like
@@ -168,7 +168,13 @@ export interface Reference {
  * tagName, and another `Module` should contain the
  * `CustomElement`.
  */
-export interface CustomElement extends ClassDeclaration {
+export interface CustomElementDeclaration extends ClassDeclaration {}
+
+
+/**
+ * The additional fields that a custom element adds to classes and mixins.
+ */
+export interface CustomElement extends ClassLike {
   /**
    * An optional tag name that should be specified if this is a
    * self-registering element.
@@ -193,7 +199,7 @@ export interface CustomElement extends ClassDeclaration {
    */
   slots?: Slot[];
 
-  parts?: CssPart[];
+  cssParts?: CssPart[];
 
   cssProperties?: CssCustomProperty[];
 
@@ -404,9 +410,52 @@ export interface ClassMethod extends FunctionLike {
 }
 
 /**
- *
+ * A description of a mixin.
+ * 
+ * Mixins are functions which generate a new subclass of a given superclass.
+ * This interfaces describes the class and custom element features that
+ * are added by the mixin. As such, it extends the CustomElement interface and
+ * ClassLike interface.
+ * 
+ * Since mixins are functions, it also extends the FunctionLike interface. This
+ * means a mixin is callable, and has parameters and a return type.
+ * 
+ * The return type is often hard or impossible to accurately describe in type
+ * systems like TypeScript. It requires generics and an `exrtends` operator
+ * that TypeScript lacks. Therefore it's reccomended that the return type is
+ * left empty. The most common form of a mixin function takes a single
+ * argument, so consumers of this interface should assume that the return type
+ * is the single argument subclassed by this declaration.
+ * 
+ * @example
+ * 
+ * This JavaScript mixin declaration:
+ * ```javascript
+ * const MyMixin = (base) => class extends base {
+ *   foo() { ... }
+ * }
+ * ```
+ * 
+ * Is described by this JSON:
+ * ```json
+ * {
+ *   "kind": "mixin",
+ *   "name": "MyMixin",
+ *   "parameters": [
+ *     {
+ *       "name": "base",
+ *     }
+ *   ],
+ *   "members": [
+ *     {
+ *       "kind": "method",
+ *       "name": "foo",
+ *     }
+ *   ]
+ * }
+ * ```
  */
-export interface MixinDeclaration extends ClassLike, FunctionLike {
+export interface MixinDeclaration extends CustomElement, FunctionLike {
   kind: 'mixin';
 }
 
