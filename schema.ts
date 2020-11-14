@@ -361,7 +361,52 @@ export interface ClassLike {
    * A markdown description of the class.
    */
   description?: string;
+
+  /**
+   * The superclass of this class.
+   *
+   * If this class is defined with mixin
+   * applications, the prototype chain includes the mixin applications
+   * and the true superclass is computed from them.
+   */
   superclass?: Reference;
+
+  /**
+   * Any class mixins applied in the extends clause of this class.
+   *
+   * If mixins are applied in the class definition, then the true superclass
+   * of this class is the result of applying mixins in order to the superclass.
+   *
+   * Mixins must be listed in order of their application to the superclass or
+   * previous mixin application. This means that the innermost mixin is listed
+   * first. This may read backwards from the common order in JavaScript, but
+   * matches the order of language used to describe mixin application, like
+   * "S with A, B".
+   *
+   * @example
+   *
+   * ```javascript
+   * class T extends B(A(S)) {}
+   * ```
+   *
+   * is described by:
+   * ```json
+   * {
+   *   "kind": "class",
+   *   "superclass": {
+   *     "name": "S"
+   *   },
+   *   "mixins": [
+   *     {
+   *       "name": "A"
+   *     },
+   *     {
+   *       "name": "B"
+   *     },
+   *   ]
+   * }
+   * ```
+   */
   mixins?: Array<Reference>;
   members?: Array<ClassMember>;
 }
@@ -409,7 +454,7 @@ export interface ClassMethod extends FunctionLike {
 }
 
 /**
- * A description of a mixin.
+ * A description of a class mixin.
  *
  * Mixins are functions which generate a new subclass of a given superclass.
  * This interfaces describes the class and custom element features that
@@ -426,8 +471,8 @@ export interface ClassMethod extends FunctionLike {
  * argument, so consumers of this interface should assume that the return type
  * is the single argument subclassed by this declaration.
  *
- * A mixin should only have a superclass if it composes another mixin, and the
- * superclass should reference that mixin.
+ * A mixin should not have a superclass. If a mixins composes other mixins,
+ * they should be listed in the `mixins` field.
  *
  * @example
  *

@@ -61,6 +61,7 @@
                     "type": "array"
                 },
                 "mixins": {
+                    "description": "Any class mixins applied in the extends clause of this class.\n\nIf mixins are applied in the class definition, then the true superclass\nof this class is the result of applying mixins in order to the superclass.\n\nMixins must be listed in order of their application to the superclass or\nprevious mixin application. This means that the innermost mixin is listed\nfirst. This may read backwards from the common order in JavaScript, but\nmatches the order of language used to describe mixin application, like\n\"S with A, B\".",
                     "items": {
                         "$ref": "#/definitions/Reference"
                     },
@@ -74,7 +75,8 @@
                     "type": "string"
                 },
                 "superclass": {
-                    "$ref": "#/definitions/Reference"
+                    "$ref": "#/definitions/Reference",
+                    "description": "The superclass of this class.\n\nIf this class is defined with mixin\napplications, the prototype chain includes the mixin applications\nand the true superclass is computed from them."
                 }
             },
             "required": [
@@ -246,6 +248,7 @@
                     "type": "array"
                 },
                 "mixins": {
+                    "description": "Any class mixins applied in the extends clause of this class.\n\nIf mixins are applied in the class definition, then the true superclass\nof this class is the result of applying mixins in order to the superclass.\n\nMixins must be listed in order of their application to the superclass or\nprevious mixin application. This means that the innermost mixin is listed\nfirst. This may read backwards from the common order in JavaScript, but\nmatches the order of language used to describe mixin application, like\n\"S with A, B\".",
                     "items": {
                         "$ref": "#/definitions/Reference"
                     },
@@ -259,7 +262,8 @@
                     "type": "string"
                 },
                 "superclass": {
-                    "$ref": "#/definitions/Reference"
+                    "$ref": "#/definitions/Reference",
+                    "description": "The superclass of this class.\n\nIf this class is defined with mixin\napplications, the prototype chain includes the mixin applications\nand the true superclass is computed from them."
                 }
             },
             "required": [
@@ -468,7 +472,7 @@
             "type": "object"
         },
         "MixinDeclaration": {
-            "description": "A description of a mixin.\n\nMixins are functions which generate a new subclass of a given superclass.\nThis interfaces describes the class and custom element features that\nare added by the mixin. As such, it extends the CustomElement interface and\nClassLike interface.\n\nSince mixins are functions, it also extends the FunctionLike interface. This\nmeans a mixin is callable, and has parameters and a return type.\n\nThe return type is often hard or impossible to accurately describe in type\nsystems like TypeScript. It requires generics and an `extends` operator\nthat TypeScript lacks. Therefore it's recommended that the return type is\nleft empty. The most common form of a mixin function takes a single\nargument, so consumers of this interface should assume that the return type\nis the single argument subclassed by this declaration.\n\nA mixin should only have a superclass if it composes another mixin, and the\nsuperclass should reference that mixin.",
+            "description": "A description of a class mixin.\n\nMixins are functions which generate a new subclass of a given superclass.\nThis interfaces describes the class and custom element features that\nare added by the mixin. As such, it extends the CustomElement interface and\nClassLike interface.\n\nSince mixins are functions, it also extends the FunctionLike interface. This\nmeans a mixin is callable, and has parameters and a return type.\n\nThe return type is often hard or impossible to accurately describe in type\nsystems like TypeScript. It requires generics and an `extends` operator\nthat TypeScript lacks. Therefore it's recommended that the return type is\nleft empty. The most common form of a mixin function takes a single\nargument, so consumers of this interface should assume that the return type\nis the single argument subclassed by this declaration.\n\nA mixin should not have a superclass. If a mixins composes other mixins,\nthey should be listed in the `mixins` field.",
             "properties": {
                 "attributes": {
                     "description": "The attributes that this element is known to understand.",
@@ -526,6 +530,7 @@
                     "type": "array"
                 },
                 "mixins": {
+                    "description": "Any class mixins applied in the extends clause of this class.\n\nIf mixins are applied in the class definition, then the true superclass\nof this class is the result of applying mixins in order to the superclass.\n\nMixins must be listed in order of their application to the superclass or\nprevious mixin application. This means that the innermost mixin is listed\nfirst. This may read backwards from the common order in JavaScript, but\nmatches the order of language used to describe mixin application, like\n\"S with A, B\".",
                     "items": {
                         "$ref": "#/definitions/Reference"
                     },
@@ -563,7 +568,8 @@
                     "type": "string"
                 },
                 "superclass": {
-                    "$ref": "#/definitions/Reference"
+                    "$ref": "#/definitions/Reference",
+                    "description": "The superclass of this class.\n\nIf this class is defined with mixin\napplications, the prototype chain includes the mixin applications\nand the true superclass is computed from them."
                 },
                 "tagName": {
                     "description": "An optional tag name that should be specified if this is a\nself-registering element.\n\nSelf-registering elements must also include a CustomElementExport\nin the module's exports.",
