@@ -4,12 +4,13 @@
   "description": "A file format for describing custom elements",
   "main": "schema.json",
   "scripts": {
-    "format": "prettier schema.ts --write",
-    "build": "typescript-json-schema --required --ignoreErrors schema.ts -o schema.json Package",
+    "format": "prettier schema.d.ts --write",
+    "build": "typescript-json-schema --required --ignoreErrors schema.d.ts -o schema.json Package",
     "prepublishOnly": "npm run build"
   },
   "files": [
-    "schema.json"
+    "schema.json",
+    "schema.d.ts"
   ],
   "repository": {
     "type": "git",
