@@ -1,6 +1,6 @@
 {
   "name": "custom-elements-manifest",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A file format for describing custom elements",
   "main": "schema.json",
   "scripts": {
