@@ -12,7 +12,7 @@
     "url": "git+https://github.com/webcomponents/custom-elements-manifest.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "The Polymer Authors",
   "license": "BSD-3-Clause",
   "bugs": {
     "url": "https://github.com/webcomponents/custom-elements-manifest/issues"
