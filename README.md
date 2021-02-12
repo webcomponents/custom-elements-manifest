@@ -3,13 +3,14 @@ A file format for describing custom elements.
 
 # Status
 
-This effort is in the initial discussion and requirements-gathering phase. Please join the discussion in the [issues](https://github.com/webcomponents/custom-elements-manifest/issues).
+This schema is in a pre-release phase. We are gathering feedback from tool
+and web component authors. Please file [issues](https://github.com/webcomponents/custom-elements-manifest/issues) to give feedback.
 
-# Rationale
+# Motivation
 
 Many tools need some machine-readable descriptions of custom elements: IDEs, documentation viewers, linters, graphical design tools, etc.
 
-There have been, and are currently, several efforts in this area:
+There have been several efforts in this area, including:
 - [Polymer Analyzer](https://github.com/Polymer/tools/tree/master/packages/analyzer)'s `analysis.json` file
 - [VS Code Custom Data format](https://github.com/microsoft/vscode-custom-data/tree/master/samples/webcomponents)
 - https://github.com/JetBrains/web-types
