@@ -666,13 +666,13 @@
                     },
                     "type": "array"
                 },
-                "type": {
+                "text": {
                     "description": "The full string representation of the type, in whatever type syntax is\nused, such as JSDoc, Closure, or TypeScript.",
                     "type": "string"
                 }
             },
             "required": [
-                "type"
+                "text"
             ],
             "type": "object"
         },
