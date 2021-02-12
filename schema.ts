@@ -318,7 +318,7 @@ export interface Type {
    * The full string representation of the type, in whatever type syntax is
    * used, such as JSDoc, Closure, or TypeScript.
    */
-  type: string;
+  text: string;
 
   /**
    * An array of references to the types in the type string.
