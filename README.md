@@ -6,6 +6,28 @@ A file format for describing custom elements.
 This schema is in a pre-release phase. We are gathering feedback from tool
 and web component authors. Please file [issues](https://github.com/webcomponents/custom-elements-manifest/issues) to give feedback.
 
+The schema is published as a [JSON Schema](https://json-schema.org/) file, in `schema.json`. The schema is written in TypeScript (see [schema.d.ts](https://github.com/webcomponents/custom-elements-manifest/blob/master/schema.d.ts)) and then compiled to JSON Schema.
+
+# Usage
+
+Install:
+
+```sh
+npm i -D custom-elements-manifest
+```
+
+Require the JSON Schema:
+
+```ts
+const customElementManifestSchema = require('custom-elements-manifest');
+```
+
+Import the TypeScript types:
+
+```ts
+import * as schema from 'custom-elements-manifest/schema';
+```
+
 # Motivation
 
 Many tools need some machine-readable descriptions of custom elements: IDEs, documentation viewers, linters, graphical design tools, etc.
