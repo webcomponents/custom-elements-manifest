@@ -28,6 +28,13 @@ Import the TypeScript types:
 import * as schema from 'custom-elements-manifest/schema';
 ```
 
+## Schema Versioning
+
+The schema has a `schemaVersion` field in the top-level object to facilitate
+evolution of the schema. The current schema version is `0.1.0`.
+
+This version will not always match the npm package version, as some changes to the npm package might not have changes to the schema. We will publish a list of schema versions and their associated npm versions and git tags.
+
 # Motivation
 
 Many tools need some machine-readable descriptions of custom elements: IDEs, documentation viewers, linters, graphical design tools, etc.
