@@ -2,11 +2,15 @@
   "name": "custom-elements-manifest",
   "version": "0.0.0",
   "description": "A file format for describing custom elements",
-  "main": "index.js",
+  "main": "schema.json",
   "scripts": {
     "format": "prettier schema.ts --write",
-    "generate-json-schema": "typescript-json-schema --required --ignoreErrors schema.ts -o schema.json Package"
+    "build": "typescript-json-schema --required --ignoreErrors schema.ts -o schema.json Package",
+    "prepublishOnly": "npm run build"
   },
+  "files": [
+    "schema.json"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/webcomponents/custom-elements-manifest.git"
