@@ -15,6 +15,9 @@
                     "description": "The name of the field this attribute is associated with, if any.",
                     "type": "string"
                 },
+                "inheritedFrom": {
+                    "$ref": "#/definitions/Reference"
+                },
                 "name": {
                     "type": "string"
                 },
@@ -58,6 +61,7 @@
                     "type": "array"
                 },
                 "mixins": {
+                    "description": "Any class mixins applied in the extends clause of this class.\n\nIf mixins are applied in the class definition, then the true superclass\nof this class is the result of applying mixins in order to the superclass.\n\nMixins must be listed in order of their application to the superclass or\nprevious mixin application. This means that the innermost mixin is listed\nfirst. This may read backwards from the common order in JavaScript, but\nmatches the order of language used to describe mixin application, like\n\"S with A, B\".",
                     "items": {
                         "$ref": "#/definitions/Reference"
                     },
@@ -71,7 +75,8 @@
                     "type": "string"
                 },
                 "superclass": {
-                    "$ref": "#/definitions/Reference"
+                    "$ref": "#/definitions/Reference",
+                    "description": "The superclass of this class.\n\nIf this class is defined with mixin\napplications, the prototype chain includes the mixin applications\nand the true superclass is computed from them."
                 }
             },
             "required": [
@@ -216,38 +221,12 @@
             ],
             "type": "object"
         },
-        "CustomElement": {
-            "description": "Description of a custom element class.\n\nCustom elements are JavaScript classes, so this extends from\n`ClassDeclaration` and adds custom-element-specific features like\nattributes, events, and slots.\n\nNote that `tagName` in this interface is optional. Tag names are not\nneccessarily part of a custom element class, but belong to the definition\n(often called the \"registration\") or the `customElements.define()` call.\n\nBecause classes and tag anmes can only be registered once, there's a\none-to-one relationship between classes and tag names. For ease of use,\nwe allow the tag name here.\n\nSome packages define and register custom elements in separate modules. In\nthese cases one `Module` should contain the `CustomElement` without a\ntagName, and another `Module` should contain the\n`CustomElement`.",
+        "CustomElementDeclaration": {
+            "description": "A description of a custom element class.\n\nCustom elements are JavaScript classes, so this extends from\n`ClassDeclaration` and adds custom-element-specific features like\nattributes, events, and slots.\n\nNote that `tagName` in this interface is optional. Tag names are not\nneccessarily part of a custom element class, but belong to the definition\n(often called the \"registration\") or the `customElements.define()` call.\n\nBecause classes and tag anmes can only be registered once, there's a\none-to-one relationship between classes and tag names. For ease of use,\nwe allow the tag name here.\n\nSome packages define and register custom elements in separate modules. In\nthese cases one `Module` should contain the `CustomElement` without a\ntagName, and another `Module` should contain the\n`CustomElement`.",
             "properties": {
-                "attributes": {
-                    "description": "The attributes that this element is known to understand.",
-                    "items": {
-                        "$ref": "#/definitions/Attribute"
-                    },
-                    "type": "array"
-                },
-                "cssProperties": {
-                    "items": {
-                        "$ref": "#/definitions/CssCustomProperty"
-                    },
-                    "type": "array"
-                },
-                "demos": {
-                    "items": {
-                        "$ref": "#/definitions/Demo"
-                    },
-                    "type": "array"
-                },
                 "description": {
                     "description": "A markdown description of the class.",
                     "type": "string"
-                },
-                "events": {
-                    "description": "The events that this element fires.",
-                    "items": {
-                        "$ref": "#/definitions/Event"
-                    },
-                    "type": "array"
                 },
                 "kind": {
                     "enum": [
@@ -269,6 +248,7 @@
                     "type": "array"
                 },
                 "mixins": {
+                    "description": "Any class mixins applied in the extends clause of this class.\n\nIf mixins are applied in the class definition, then the true superclass\nof this class is the result of applying mixins in order to the superclass.\n\nMixins must be listed in order of their application to the superclass or\nprevious mixin application. This means that the innermost mixin is listed\nfirst. This may read backwards from the common order in JavaScript, but\nmatches the order of language used to describe mixin application, like\n\"S with A, B\".",
                     "items": {
                         "$ref": "#/definitions/Reference"
                     },
@@ -277,29 +257,13 @@
                 "name": {
                     "type": "string"
                 },
-                "parts": {
-                    "items": {
-                        "$ref": "#/definitions/CssPart"
-                    },
-                    "type": "array"
-                },
-                "slots": {
-                    "description": "The shadow dom content slots that this element accepts.",
-                    "items": {
-                        "$ref": "#/definitions/Slot"
-                    },
-                    "type": "array"
-                },
                 "summary": {
                     "description": "A markdown summary suitable for display in a listing.",
                     "type": "string"
                 },
                 "superclass": {
-                    "$ref": "#/definitions/Reference"
-                },
-                "tagName": {
-                    "description": "An optional tag name that should be specified if this is a\nself-registering element.\n\nSelf-registering elements must also include a CustomElementExport\nin the module's exports.",
-                    "type": "string"
+                    "$ref": "#/definitions/Reference",
+                    "description": "The superclass of this class.\n\nIf this class is defined with mixin\napplications, the prototype chain includes the mixin applications\nand the true superclass is computed from them."
                 }
             },
             "required": [
@@ -354,6 +318,9 @@
                 "description": {
                     "description": "A markdown description.",
                     "type": "string"
+                },
+                "inheritedFrom": {
+                    "$ref": "#/definitions/Reference"
                 },
                 "name": {
                     "type": "string"
@@ -453,10 +420,13 @@
                                 "$ref": "#/definitions/FunctionDeclaration"
                             },
                             {
+                                "$ref": "#/definitions/MixinDeclaration"
+                            },
+                            {
                                 "$ref": "#/definitions/VariableDeclaration"
                             },
                             {
-                                "$ref": "#/definitions/CustomElement"
+                                "$ref": "#/definitions/CustomElementDeclaration"
                             }
                         ]
                     },
@@ -498,6 +468,117 @@
                 "declarations",
                 "kind",
                 "path"
+            ],
+            "type": "object"
+        },
+        "MixinDeclaration": {
+            "description": "A description of a class mixin.\n\nMixins are functions which generate a new subclass of a given superclass.\nThis interfaces describes the class and custom element features that\nare added by the mixin. As such, it extends the CustomElement interface and\nClassLike interface.\n\nSince mixins are functions, it also extends the FunctionLike interface. This\nmeans a mixin is callable, and has parameters and a return type.\n\nThe return type is often hard or impossible to accurately describe in type\nsystems like TypeScript. It requires generics and an `extends` operator\nthat TypeScript lacks. Therefore it's recommended that the return type is\nleft empty. The most common form of a mixin function takes a single\nargument, so consumers of this interface should assume that the return type\nis the single argument subclassed by this declaration.\n\nA mixin should not have a superclass. If a mixins composes other mixins,\nthey should be listed in the `mixins` field.\n\nSee [this article]{@link https://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/}\nfor more information on the classmixin pattern in JavaScript.",
+            "properties": {
+                "attributes": {
+                    "description": "The attributes that this element is known to understand.",
+                    "items": {
+                        "$ref": "#/definitions/Attribute"
+                    },
+                    "type": "array"
+                },
+                "cssParts": {
+                    "items": {
+                        "$ref": "#/definitions/CssPart"
+                    },
+                    "type": "array"
+                },
+                "cssProperties": {
+                    "items": {
+                        "$ref": "#/definitions/CssCustomProperty"
+                    },
+                    "type": "array"
+                },
+                "demos": {
+                    "items": {
+                        "$ref": "#/definitions/Demo"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "description": "A markdown description of the class.",
+                    "type": "string"
+                },
+                "events": {
+                    "description": "The events that this element fires.",
+                    "items": {
+                        "$ref": "#/definitions/Event"
+                    },
+                    "type": "array"
+                },
+                "kind": {
+                    "enum": [
+                        "mixin"
+                    ],
+                    "type": "string"
+                },
+                "members": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/definitions/ClassField"
+                            },
+                            {
+                                "$ref": "#/definitions/ClassMethod"
+                            }
+                        ]
+                    },
+                    "type": "array"
+                },
+                "mixins": {
+                    "description": "Any class mixins applied in the extends clause of this class.\n\nIf mixins are applied in the class definition, then the true superclass\nof this class is the result of applying mixins in order to the superclass.\n\nMixins must be listed in order of their application to the superclass or\nprevious mixin application. This means that the innermost mixin is listed\nfirst. This may read backwards from the common order in JavaScript, but\nmatches the order of language used to describe mixin application, like\n\"S with A, B\".",
+                    "items": {
+                        "$ref": "#/definitions/Reference"
+                    },
+                    "type": "array"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "parameters": {
+                    "items": {
+                        "$ref": "#/definitions/Parameter"
+                    },
+                    "type": "array"
+                },
+                "return": {
+                    "properties": {
+                        "description": {
+                            "type": "string"
+                        },
+                        "type": {
+                            "$ref": "#/definitions/Type"
+                        }
+                    },
+                    "type": "object"
+                },
+                "slots": {
+                    "description": "The shadow dom content slots that this element accepts.",
+                    "items": {
+                        "$ref": "#/definitions/Slot"
+                    },
+                    "type": "array"
+                },
+                "summary": {
+                    "description": "A markdown summary suitable for display in a listing.",
+                    "type": "string"
+                },
+                "superclass": {
+                    "$ref": "#/definitions/Reference",
+                    "description": "The superclass of this class.\n\nIf this class is defined with mixin\napplications, the prototype chain includes the mixin applications\nand the true superclass is computed from them."
+                },
+                "tagName": {
+                    "description": "An optional tag name that should be specified if this is a\nself-registering element.\n\nSelf-registering elements must also include a CustomElementExport\nin the module's exports.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "kind",
+                "name"
             ],
             "type": "object"
         },
@@ -652,7 +733,7 @@
             "type": "object"
         }
     },
-    "description": "The top-level interface of a custom-elements.json file.\n\nBecause custom elements are JavaScript classes, describing a custom element\nmay require describing arbitrary JavaScript concepts like modules, classes,\nfunctions, etc. So custom-elements.json documents are capable of documenting\nthe elements in a package, as well as those JavaScript concepts.\n\nThe modules described in a package should be the public entrypoints that\nother packages may import from. Multiple modules may export the same object\nvia re-exports, but in most cases a package should document the single\ncanonical export that should be used.",
+    "description": "The top-level interface of a custom elements manifest file.\n\nBecause custom elements are JavaScript classes, describing a custom element\nmay require describing arbitrary JavaScript concepts like modules, classes,\nfunctions, etc. So custom elements manifests are capable of documenting\nthe elements in a package, as well as those JavaScript concepts.\n\nThe modules described in a package should be the public entrypoints that\nother packages may import from. Multiple modules may export the same object\nvia re-exports, but in most cases a package should document the single\ncanonical export that should be used.",
     "properties": {
         "modules": {
             "description": "An array of the modules this package contains.",
@@ -666,7 +747,7 @@
             "type": "string"
         },
         "schemaVersion": {
-            "description": "The version of the custom-elements.json schema used in this file.",
+            "description": "The version of the schema used in this file.",
             "type": "string"
         }
     },

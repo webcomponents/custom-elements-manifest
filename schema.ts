@@ -131,7 +131,7 @@ export type Declaration =
   | FunctionDeclaration
   | MixinDeclaration
   | VariableDeclaration
-  | CustomElement;
+  | CustomElementDeclaration;
 
 /**
  * A reference to an export of a module.
@@ -149,7 +149,7 @@ export interface Reference {
 }
 
 /**
- * Description of a custom element class.
+ * A description of a custom element class.
  *
  * Custom elements are JavaScript classes, so this extends from
  * `ClassDeclaration` and adds custom-element-specific features like
@@ -168,7 +168,12 @@ export interface Reference {
  * tagName, and another `Module` should contain the
  * `CustomElement`.
  */
-export interface CustomElement extends ClassDeclaration {
+export interface CustomElementDeclaration extends ClassDeclaration {}
+
+/**
+ * The additional fields that a custom element adds to classes and mixins.
+ */
+export interface CustomElement extends ClassLike {
   /**
    * An optional tag name that should be specified if this is a
    * self-registering element.
@@ -193,7 +198,7 @@ export interface CustomElement extends ClassDeclaration {
    */
   slots?: Slot[];
 
-  parts?: CssPart[];
+  cssParts?: CssPart[];
 
   cssProperties?: CssCustomProperty[];
 
@@ -356,7 +361,52 @@ export interface ClassLike {
    * A markdown description of the class.
    */
   description?: string;
+
+  /**
+   * The superclass of this class.
+   *
+   * If this class is defined with mixin
+   * applications, the prototype chain includes the mixin applications
+   * and the true superclass is computed from them.
+   */
   superclass?: Reference;
+
+  /**
+   * Any class mixins applied in the extends clause of this class.
+   *
+   * If mixins are applied in the class definition, then the true superclass
+   * of this class is the result of applying mixins in order to the superclass.
+   *
+   * Mixins must be listed in order of their application to the superclass or
+   * previous mixin application. This means that the innermost mixin is listed
+   * first. This may read backwards from the common order in JavaScript, but
+   * matches the order of language used to describe mixin application, like
+   * "S with A, B".
+   *
+   * @example
+   *
+   * ```javascript
+   * class T extends B(A(S)) {}
+   * ```
+   *
+   * is described by:
+   * ```json
+   * {
+   *   "kind": "class",
+   *   "superclass": {
+   *     "name": "S"
+   *   },
+   *   "mixins": [
+   *     {
+   *       "name": "A"
+   *     },
+   *     {
+   *       "name": "B"
+   *     },
+   *   ]
+   * }
+   * ```
+   */
   mixins?: Array<Reference>;
   members?: Array<ClassMember>;
 }
@@ -404,9 +454,58 @@ export interface ClassMethod extends FunctionLike {
 }
 
 /**
+ * A description of a class mixin.
  *
+ * Mixins are functions which generate a new subclass of a given superclass.
+ * This interfaces describes the class and custom element features that
+ * are added by the mixin. As such, it extends the CustomElement interface and
+ * ClassLike interface.
+ *
+ * Since mixins are functions, it also extends the FunctionLike interface. This
+ * means a mixin is callable, and has parameters and a return type.
+ *
+ * The return type is often hard or impossible to accurately describe in type
+ * systems like TypeScript. It requires generics and an `extends` operator
+ * that TypeScript lacks. Therefore it's recommended that the return type is
+ * left empty. The most common form of a mixin function takes a single
+ * argument, so consumers of this interface should assume that the return type
+ * is the single argument subclassed by this declaration.
+ *
+ * A mixin should not have a superclass. If a mixins composes other mixins,
+ * they should be listed in the `mixins` field.
+ *
+ * See [this article]{@link https://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/}
+ * for more information on the classmixin pattern in JavaScript.
+ *
+ * @example
+ *
+ * This JavaScript mixin declaration:
+ * ```javascript
+ * const MyMixin = (base) => class extends base {
+ *   foo() { ... }
+ * }
+ * ```
+ *
+ * Is described by this JSON:
+ * ```json
+ * {
+ *   "kind": "mixin",
+ *   "name": "MyMixin",
+ *   "parameters": [
+ *     {
+ *       "name": "base",
+ *     }
+ *   ],
+ *   "members": [
+ *     {
+ *       "kind": "method",
+ *       "name": "foo",
+ *     }
+ *   ]
+ * }
+ * ```
  */
-export interface MixinDeclaration extends ClassLike, FunctionLike {
+export interface MixinDeclaration extends CustomElement, FunctionLike {
   kind: 'mixin';
 }
 
