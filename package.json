@@ -24,8 +24,8 @@
   },
   "homepage": "https://github.com/webcomponents/custom-elements-manifest#readme",
   "devDependencies": {
-    "prettier": "^2.1.2",
-    "typescript": "^3.7.2",
-    "typescript-json-schema": "^0.40.0"
+    "prettier": "^2.2.1",
+    "typescript": "^4.1.5",
+    "typescript-json-schema": "^0.49.0"
   }
 }
