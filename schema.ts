@@ -474,6 +474,9 @@ export interface ClassMethod extends FunctionLike {
  * A mixin should not have a superclass. If a mixins composes other mixins,
  * they should be listed in the `mixins` field.
  *
+ * See [this article]{@link https://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/}
+ * for more information on the classmixin pattern in JavaScript.
+ *
  * @example
  *
  * This JavaScript mixin declaration:
