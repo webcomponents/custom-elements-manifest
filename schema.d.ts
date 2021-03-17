@@ -138,14 +138,28 @@ export type Declaration =
  *
  * All references are required to be publically accessible, so the canonical
  * representation of a reference is the export it's available from.
- *
- * Referrences to global symbols like `Array`, `HTMLElement`, or `Event`
- *
+ * 
+ * `package` should generally refer to an npm package name. If `package` is
+ * undefined then the reference is local to this package. If `module` is
+ * undedined the reference is local to the containing module.
+ * 
+ * Referrences to global symbols like `Array`, `HTMLElement`, or `Event` should
+ * use a `package` name of `"global:"`.
  */
 export interface Reference {
   name: string;
   package?: string;
   module?: string;
+}
+
+/**
+ * A reference to the source of an declaration or member.
+ */
+export interface SourceReference {
+  /**
+   * An absolute URL to the source (ie. a GitHub URL).
+   */
+  href: string;
 }
 
 /**
@@ -330,6 +344,8 @@ export interface Type {
    * and `BarElement` without understanding arrays, generics, or union types.
    */
   references?: TypeReference[];
+
+  source? : SourceReference;
 }
 
 /**
@@ -409,6 +425,8 @@ export interface ClassLike {
    */
   mixins?: Array<Reference>;
   members?: Array<ClassMember>;
+
+  source? : SourceReference;
 }
 
 export interface ClassDeclaration extends ClassLike {
@@ -444,6 +462,7 @@ export interface ClassField extends PropertyLike {
   static?: boolean;
   privacy?: Privacy;
   inheritedFrom?: Reference;
+  source? : SourceReference;
 }
 
 export interface ClassMethod extends FunctionLike {
@@ -451,6 +470,7 @@ export interface ClassMethod extends FunctionLike {
   static?: boolean;
   privacy?: Privacy;
   inheritedFrom?: Reference;
+  source? : SourceReference;
 }
 
 /**
@@ -511,10 +531,12 @@ export interface MixinDeclaration extends CustomElement, FunctionLike {
 
 export interface VariableDeclaration extends PropertyLike {
   kind: 'variable';
+  source? : SourceReference;
 }
 
 export interface FunctionDeclaration extends FunctionLike {
   kind: 'function';
+  source? : SourceReference;
 }
 
 export interface Parameter extends PropertyLike {
@@ -558,4 +580,6 @@ export interface Demo {
    * if it's hosted.
    */
   url: string;
+
+  source? : SourceReference;
 }
