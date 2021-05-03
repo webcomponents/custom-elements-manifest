@@ -141,9 +141,9 @@ export type Declaration =
  * 
  * `package` should generally refer to an npm package name. If `package` is
  * undefined then the reference is local to this package. If `module` is
- * undedined the reference is local to the containing module.
+ * undefined the reference is local to the containing module.
  * 
- * Referrences to global symbols like `Array`, `HTMLElement`, or `Event` should
+ * References to global symbols like `Array`, `HTMLElement`, or `Event` should
  * use a `package` name of `"global:"`.
  */
 export interface Reference {
@@ -153,7 +153,7 @@ export interface Reference {
 }
 
 /**
- * A reference to the source of an declaration or member.
+ * A reference to the source of a declaration or member.
  */
 export interface SourceReference {
   /**
