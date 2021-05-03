@@ -28,6 +28,17 @@ Import the TypeScript types:
 import * as schema from 'custom-elements-manifest/schema';
 ```
 
+## Referencing manifests from npm packages
+
+In order to allow tools to find npm packages with custom element manifests without having to download package tarballs, packages should have a `"customElements"` field in their `package.json` that points to the manifest:
+
+```json
+{
+  "name": "example-package",
+  "customElements": "custom-elements.json",
+}
+```
+
 ## Schema Versioning
 
 The schema has a `schemaVersion` field in the top-level object to facilitate
