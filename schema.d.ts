@@ -251,6 +251,12 @@ export interface Attribute {
    * The name of the field this attribute is associated with, if any.
    */
   fieldName?: string;
+  
+  /**
+   * The name of the event wich is fired when the attribute or coresponding
+   * field changes, if any.
+   */
+  event?: string;
 }
 
 export interface Event {
