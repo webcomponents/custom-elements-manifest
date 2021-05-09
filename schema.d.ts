@@ -289,6 +289,11 @@ export interface Slot {
    * A markdown description.
    */
   description?: string;
+  
+  /**
+  * A set of CSS selectors for allowable children
+  */
+  allowedChildren?: string[];
 }
 
 /**
