@@ -248,6 +248,21 @@ export interface Attribute {
   defaultValue?: string;
 
   /**
+   * Possible values of the attribute, if any.
+   */
+  possibleValues?: string[];
+  
+  /**
+   * If Type is numeric and has a minimum constraint.
+   */
+  min?: string;
+  
+  /**
+   * If Type is numeric and has a maximum constraint.
+   */
+  max?: string;
+  
+  /**
    * The name of the field this attribute is associated with, if any.
    */
   fieldName?: string;
