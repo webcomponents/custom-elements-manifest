@@ -68,7 +68,7 @@ export interface JavaScriptModule {
    * exports should be described here. Ie, functions and objects that may be
    * properties of exported objects, or passed as arguments to functions.
    */
-  declarations: Array<Declaration>;
+  declarations?: Array<Declaration>;
 
   /**
    * The exports of a module. This includes JavaScript exports and
