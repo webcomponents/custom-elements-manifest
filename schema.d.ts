@@ -68,7 +68,7 @@ export interface JavaScriptModule {
    * exports should be described here. Ie, functions and objects that may be
    * properties of exported objects, or passed as arguments to functions.
    */
-  declarations: Array<Declaration>;
+  declarations?: Array<Declaration>;
 
   /**
    * The exports of a module. This includes JavaScript exports and
@@ -245,7 +245,7 @@ export interface Attribute {
    * As attributes are always strings, this is the actual value, not a human
    * readable description.
    */
-  defaultValue?: string;
+  default?: string;
 
   /**
    * The name of the field this attribute is associated with, if any.
@@ -314,7 +314,7 @@ export interface CssCustomProperty {
    */
   name: string;
 
-  defaultValue?: string;
+  default?: string;
 
   /**
    * A markdown summary suitable for display in a listing.
