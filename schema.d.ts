@@ -222,7 +222,7 @@ export interface CustomElement extends ClassLike {
    * Distinguishes a regular JavaScript class from a
    * custom element class
    */
-  isCustomElement?: boolean;
+  customElement: true;
 }
 
 export interface Attribute {
