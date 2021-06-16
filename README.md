@@ -1,11 +1,6 @@
 # custom-elements-manifest
 A file format for describing custom elements.
 
-# Status
-
-This schema is in a pre-release phase. We are gathering feedback from tool
-and web component authors. Please file [issues](https://github.com/webcomponents/custom-elements-manifest/issues) to give feedback.
-
 The schema is published as a [JSON Schema](https://json-schema.org/) file, in `schema.json`. The schema is written in TypeScript (see [schema.d.ts](https://github.com/webcomponents/custom-elements-manifest/blob/master/schema.d.ts)) and then compiled to JSON Schema.
 
 # Usage
@@ -42,7 +37,7 @@ In order to allow tools to find npm packages with custom element manifests witho
 ## Schema Versioning
 
 The schema has a `schemaVersion` field in the top-level object to facilitate
-evolution of the schema. The schema follows [semver](https://semver.org/) versioning, the current schema version is `0.1.0`.
+evolution of the schema. The schema follows [semver](https://semver.org/) versioning, the current schema version is `1.0.0`.
 
 This version will not always match the npm package version, as some changes to the npm package might not have changes to the schema. We will publish a list of schema versions and their associated npm versions and git tags.
 
