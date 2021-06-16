@@ -217,6 +217,12 @@ export interface CustomElement extends ClassLike {
   cssProperties?: CssCustomProperty[];
 
   demos?: Demo[];
+
+  /**
+   * Distinguishes a regular JavaScript class from a
+   * custom element class
+   */
+  customElement: true;
 }
 
 export interface Attribute {
