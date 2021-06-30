@@ -34,6 +34,14 @@ In order to allow tools to find npm packages with custom element manifests witho
 }
 ```
 
+## Referencing manifests from html pages
+
+In order to allow tools that don't have access to the package.json property to discover the element manifests, a meta-tag should be used to indicate the location of the custom elements manifest:
+
+```html
+<meta name="custom-elements-manifest" content="custom-elements.json" />
+```
+
 ## Schema Versioning
 
 The schema has a `schemaVersion` field in the top-level object to facilitate
