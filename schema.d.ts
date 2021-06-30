@@ -131,18 +131,19 @@ export type Declaration =
   | FunctionDeclaration
   | MixinDeclaration
   | VariableDeclaration
-  | CustomElementDeclaration;
+  | CustomElementDeclaration
+  | CustomElementMixinDeclaration;
 
 /**
  * A reference to an export of a module.
  *
  * All references are required to be publically accessible, so the canonical
  * representation of a reference is the export it's available from.
- * 
+ *
  * `package` should generally refer to an npm package name. If `package` is
  * undefined then the reference is local to this package. If `module` is
  * undefined the reference is local to the containing module.
- * 
+ *
  * References to global symbols like `Array`, `HTMLElement`, or `Event` should
  * use a `package` name of `"global:"`.
  */
@@ -173,16 +174,18 @@ export interface SourceReference {
  * neccessarily part of a custom element class, but belong to the definition
  * (often called the "registration") or the `customElements.define()` call.
  *
- * Because classes and tag anmes can only be registered once, there's a
+ * Because classes and tag names can only be registered once, there's a
  * one-to-one relationship between classes and tag names. For ease of use,
  * we allow the tag name here.
  *
  * Some packages define and register custom elements in separate modules. In
  * these cases one `Module` should contain the `CustomElement` without a
  * tagName, and another `Module` should contain the
- * `CustomElement`.
+ * `CustomElementExport`.
  */
-export interface CustomElementDeclaration extends ClassDeclaration {}
+export interface CustomElementDeclaration
+  extends ClassDeclaration,
+    CustomElement {}
 
 /**
  * The additional fields that a custom element adds to classes and mixins.
@@ -351,7 +354,7 @@ export interface Type {
    */
   references?: TypeReference[];
 
-  source? : SourceReference;
+  source?: SourceReference;
 }
 
 /**
@@ -432,7 +435,7 @@ export interface ClassLike {
   mixins?: Array<Reference>;
   members?: Array<ClassMember>;
 
-  source? : SourceReference;
+  source?: SourceReference;
 }
 
 export interface ClassDeclaration extends ClassLike {
@@ -468,7 +471,7 @@ export interface ClassField extends PropertyLike {
   static?: boolean;
   privacy?: Privacy;
   inheritedFrom?: Reference;
-  source? : SourceReference;
+  source?: SourceReference;
 }
 
 export interface ClassMethod extends FunctionLike {
@@ -476,7 +479,7 @@ export interface ClassMethod extends FunctionLike {
   static?: boolean;
   privacy?: Privacy;
   inheritedFrom?: Reference;
-  source? : SourceReference;
+  source?: SourceReference;
 }
 
 /**
@@ -531,18 +534,24 @@ export interface ClassMethod extends FunctionLike {
  * }
  * ```
  */
-export interface MixinDeclaration extends CustomElement, FunctionLike {
+export interface MixinDeclaration extends ClassLike, FunctionLike {
   kind: 'mixin';
+}
+
+/**
+ * A class mixin that also adds custom element related properties.
+ */
+export interface CustomElementMixinDeclaration extends MixinDeclaration, CustomElement {
 }
 
 export interface VariableDeclaration extends PropertyLike {
   kind: 'variable';
-  source? : SourceReference;
+  source?: SourceReference;
 }
 
 export interface FunctionDeclaration extends FunctionLike {
   kind: 'function';
-  source? : SourceReference;
+  source?: SourceReference;
 }
 
 export interface Parameter extends PropertyLike {
@@ -587,5 +596,5 @@ export interface Demo {
    */
   url: string;
 
-  source? : SourceReference;
+  source?: SourceReference;
 }
