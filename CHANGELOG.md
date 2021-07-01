@@ -17,6 +17,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 <!-- ### Removed -->
 <!-- ### Fixed -->
 
+<!-- ## [x.y.z] - YYYY-MM-DD -->
+## Unreleased
+<!-- ### Changed -->
+<!-- ### Added -->
+<!-- ### Removed -->
+### Fixed
+
+- Fixed how custom element declarations extend class declarations. Previously CustomElementDeclaration didn't include CustomElement properties, and MixinDeclaration required some CustomElement properties. Added new CustomElementMixinDeclaration interface. Fixes https://github.com/webcomponents/custom-elements-manifest/issues/69
+
 ## [1.0.0] - 2021-06-10
 
 Initial release
