@@ -20,7 +20,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 <!-- ## [x.y.z] - YYYY-MM-DD -->
 ## Unreleased
 <!-- ### Changed -->
-<!-- ### Added -->
+### Added
+
+- Added an optional `"syntax"` field to CSSCustomProperty to descript the property syntax using CSS Properties and Values API's syntax strings. Fixes
+https://github.com/webcomponents/custom-elements-manifest/issues/68
+
 <!-- ### Removed -->
 ### Fixed
 

@@ -323,6 +323,14 @@ export interface CssCustomProperty {
    */
   name: string;
 
+  /**
+   * The expected syntax of the defined property. Defaults to "*".
+   *
+   * The syntax must be a valid CSS [syntax string](https://drafts.css-houdini.org/css-properties-values-api/#syntax-string)
+   * as defined in the CSS Properties and Values API.
+   */
+  syntax?: string;
+
   default?: string;
 
   /**
@@ -541,8 +549,9 @@ export interface MixinDeclaration extends ClassLike, FunctionLike {
 /**
  * A class mixin that also adds custom element related properties.
  */
-export interface CustomElementMixinDeclaration extends MixinDeclaration, CustomElement {
-}
+export interface CustomElementMixinDeclaration
+  extends MixinDeclaration,
+    CustomElement {}
 
 export interface VariableDeclaration extends PropertyLike {
   kind: 'variable';
