@@ -323,6 +323,21 @@ export interface CssCustomProperty {
    */
   name: string;
 
+  /**
+   * The expected syntax of the defined property. Defaults to "*".
+   *
+   * The syntax must be a valid CSS [syntax string](https://developer.mozilla.org/en-US/docs/Web/CSS/@property/syntax)
+   * as defined in the CSS Properties and Values API.
+   * 
+   * Examples:
+   * 
+   * "<color>": accepts a color
+   * "<length> | <percentage>": accepts lengths or percentages but not calc expressions with a combination of the two
+   * "small | medium | large": accepts one of these values set as custom idents.
+   * "*": any valid token
+   */
+  syntax?: string;
+
   default?: string;
 
   /**
@@ -541,8 +556,9 @@ export interface MixinDeclaration extends ClassLike, FunctionLike {
 /**
  * A class mixin that also adds custom element related properties.
  */
-export interface CustomElementMixinDeclaration extends MixinDeclaration, CustomElement {
-}
+export interface CustomElementMixinDeclaration
+  extends MixinDeclaration,
+    CustomElement {}
 
 export interface VariableDeclaration extends PropertyLike {
   kind: 'variable';
