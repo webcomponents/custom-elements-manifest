@@ -132,7 +132,8 @@ export type Declaration =
   | MixinDeclaration
   | VariableDeclaration
   | CustomElementDeclaration
-  | CustomElementMixinDeclaration;
+  | CustomElementMixinDeclaration
+  | InterfaceDeclaration;
 
 /**
  * A reference to an export of a module.
@@ -384,6 +385,34 @@ export interface Type {
 export interface TypeReference extends Reference {
   start?: number;
   end?: number;
+}
+
+/**
+ * An interface that describes the properties and methods of an object.
+ */
+export interface InterfaceDeclaration {
+  kind: 'interface';
+
+  name: string;
+
+  /**
+   * A markdown summary suitable for display in a listing.
+   */
+  summary?: string;
+
+  /**
+   * A markdown description of the class.
+   */
+  description?: string;
+
+  /**
+   * The interfaces that this interface extends.
+   */
+  supertypes?: Array<Reference>;
+
+  members?: Array<ClassMember>;
+
+  source?: SourceReference;
 }
 
 /**
