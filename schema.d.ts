@@ -326,8 +326,15 @@ export interface CssCustomProperty {
   /**
    * The expected syntax of the defined property. Defaults to "*".
    *
-   * The syntax must be a valid CSS [syntax string](https://drafts.css-houdini.org/css-properties-values-api/#syntax-string)
+   * The syntax must be a valid CSS [syntax string](https://developer.mozilla.org/en-US/docs/Web/CSS/@property/syntax)
    * as defined in the CSS Properties and Values API.
+   * 
+   * Examples:
+   * 
+   * "<color>": accepts a color
+   * "<length> | <percentage>": accepts lengths or percentages but not calc expressions with a combination of the two
+   * "small | medium | large": accepts one of these values set as custom idents.
+   * "*": any valid token
    */
   syntax?: string;
 
