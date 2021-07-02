@@ -22,7 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 <!-- ### Changed -->
 ### Added
 
-- Added an optional `"syntax"` field to CSSCustomProperty to descript the property syntax using CSS Properties and Values API's syntax strings. Fixes
+- Added an optional `"syntax"` field to CSSCustomProperty to describe the property syntax using CSS Properties and Values API's syntax strings. Fixes
 https://github.com/webcomponents/custom-elements-manifest/issues/68
 
 <!-- ### Removed -->
