@@ -25,6 +25,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Added an optional `"syntax"` field to CSSCustomProperty to describe the property syntax using CSS Properties and Values API's syntax strings. Fixes
 https://github.com/webcomponents/custom-elements-manifest/issues/68
 
+- Added CustomElementField that extends ClassField with the ability to
+  describe associated attributes. Fixes https://github.com/webcomponents/custom-elements-manifest/issues/36
+
 <!-- ### Removed -->
 ### Fixed
 

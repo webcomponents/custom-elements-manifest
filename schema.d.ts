@@ -183,9 +183,7 @@ export interface SourceReference {
  * tagName, and another `Module` should contain the
  * `CustomElementExport`.
  */
-export interface CustomElementDeclaration
-  extends ClassDeclaration,
-    CustomElement {}
+export type CustomElementDeclaration = ClassDeclaration & CustomElement;
 
 /**
  * The additional fields that a custom element adds to classes and mixins.
@@ -226,7 +224,11 @@ export interface CustomElement extends ClassLike {
    * custom element class
    */
   customElement: true;
+
+  members?: Array<CustomElementMember>;
 }
+
+export type CustomElementMember = CustomElementField | ClassMethod;
 
 export interface Attribute {
   name: string;
@@ -328,9 +330,9 @@ export interface CssCustomProperty {
    *
    * The syntax must be a valid CSS [syntax string](https://developer.mozilla.org/en-US/docs/Web/CSS/@property/syntax)
    * as defined in the CSS Properties and Values API.
-   * 
+   *
    * Examples:
-   * 
+   *
    * "<color>": accepts a color
    * "<length> | <percentage>": accepts lengths or percentages but not calc expressions with a combination of the two
    * "small | medium | large": accepts one of these values set as custom idents.
@@ -489,6 +491,23 @@ export interface ClassField extends PropertyLike {
   source?: SourceReference;
 }
 
+/**
+ * Additional metadata for fields on custom elements.
+ */
+export interface CustomElementField extends ClassField {
+  /**
+   * The corresponding attribute name if there is one.
+   */
+  attribute?: string;
+
+  /**
+   * If the property reflects to an attribute.
+   *
+   * If this is true, `attribute` must be defined.
+   */
+  reflects?: boolean;
+}
+
 export interface ClassMethod extends FunctionLike {
   kind: 'method';
   static?: boolean;
@@ -556,9 +575,7 @@ export interface MixinDeclaration extends ClassLike, FunctionLike {
 /**
  * A class mixin that also adds custom element related properties.
  */
-export interface CustomElementMixinDeclaration
-  extends MixinDeclaration,
-    CustomElement {}
+export type CustomElementMixinDeclaration = MixinDeclaration & CustomElement;
 
 export interface VariableDeclaration extends PropertyLike {
   kind: 'variable';
