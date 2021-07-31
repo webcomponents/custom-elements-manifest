@@ -592,6 +592,10 @@ export interface Parameter extends PropertyLike {
    * Whether the parameter is optional. Undefined implies non-optional.
    */
   optional?: boolean;
+  /**
+   * Whether the parameter is a spread. Undefined implies single parameter.
+   */
+  spread?: boolean;
 }
 
 export interface FunctionLike {
