@@ -40,6 +40,11 @@ export interface Package {
    * An array of the modules this package contains.
    */
   modules: Array<Module>;
+
+  /**
+   * Is this package deprecated? Provide a string to give a reason or migration instructions.
+   */
+  deprecated?: boolean|string;
 }
 
 // This type may expand in the future to include JSON, CSS, or HTML
@@ -75,6 +80,11 @@ export interface JavaScriptModule {
    * custom element definitions.
    */
   exports?: Array<Export>;
+  
+  /**
+   * Is this module deprecated? Provide a string to give a reason or migration instructions.
+   */
+  deprecated?: boolean|string;
 }
 
 export type Export = JavaScriptExport | CustomElementExport;
@@ -102,6 +112,11 @@ export interface JavaScriptExport {
    * defined and the `name` field must be `"*"`.
    */
   declaration: Reference;
+  
+  /**
+   * Is this export deprecated? Provide a string to give a reason or migration instructions.
+   */
+  deprecated?: boolean|string;
 }
 
 /**
@@ -124,6 +139,11 @@ export interface CustomElementExport {
    * custom element.
    */
   declaration: Reference;
+  
+  /**
+   * Is this export deprecated? Provide a string to give a reason or migration instructions.
+   */
+  deprecated?: boolean|string;
 }
 
 export type Declaration =
@@ -226,6 +246,11 @@ export interface CustomElement extends ClassLike {
   customElement: true;
 
   members?: Array<CustomElementMember>;
+  
+  /**
+   * Is this custom-element deprecated? Provide a string to give a reason or migration instructions.
+   */
+  deprecated?: boolean|string;
 }
 
 export type CustomElementMember = CustomElementField | ClassMethod;
@@ -262,6 +287,11 @@ export interface Attribute {
    * The name of the field this attribute is associated with, if any.
    */
   fieldName?: string;
+  
+  /**
+   * Is this attribute deprecated? Provide a string to give a reason or migration instructions.
+   */
+  deprecated?: boolean|string;
 }
 
 export interface Event {
@@ -283,6 +313,11 @@ export interface Event {
   type: Type;
 
   inheritedFrom?: Reference;
+  
+  /**
+   * Is this event deprecated? Provide a string to give a reason or migration instructions.
+   */
+  deprecated?: boolean|string;
 }
 
 export interface Slot {
@@ -300,6 +335,11 @@ export interface Slot {
    * A markdown description.
    */
   description?: string;
+  
+  /**
+   * Is this slot deprecated? Provide a string to give a reason or migration instructions.
+   */
+  deprecated?: boolean|string;
 }
 
 /**
@@ -317,6 +357,11 @@ export interface CssPart {
    * A markdown description.
    */
   description?: string;
+  
+  /**
+   * Is this part deprecated? Provide a string to give a reason or migration instructions.
+   */
+  deprecated?: boolean|string;
 }
 
 export interface CssCustomProperty {
@@ -351,6 +396,11 @@ export interface CssCustomProperty {
    * A markdown description.
    */
   description?: string;
+  
+  /**
+   * Is this property deprecated? Provide a string to give a reason or migration instructions.
+   */
+  deprecated?: boolean|string;
 }
 
 export interface Type {
@@ -453,6 +503,11 @@ export interface ClassLike {
   members?: Array<ClassMember>;
 
   source?: SourceReference;
+  
+  /**
+   * Is this class or mixin deprecated? Provide a string to give a reason or migration instructions.
+   */
+  deprecated?: boolean|string;
 }
 
 export interface ClassDeclaration extends ClassLike {
@@ -481,6 +536,11 @@ export interface PropertyLike {
   type?: Type;
 
   default?: string;
+  
+  /**
+   * Is this deprecated? Provide a string to give a reason or migration instructions.
+   */
+  deprecated?: boolean|string;
 }
 
 export interface ClassField extends PropertyLike {
