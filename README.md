@@ -41,6 +41,104 @@ evolution of the schema. The schema follows [semver](https://semver.org/) versio
 
 This version will not always match the npm package version, as some changes to the npm package might not have changes to the schema. We will publish a list of schema versions and their associated npm versions and git tags.
 
+## Example
+
+Given the following source code in directory `my-project`:
+
+`my-project/my-element.js`:
+```js
+/**
+ * This is the description of the class
+ */
+export class MyElement extends HTMLElement {
+  static get observedAttributes() {
+    return ['disabled'];
+  }
+
+  set disabled(val) {
+    this.__disabled = val;
+  }
+  get disabled() {
+    return this.__disabled;
+  }
+
+  fire() {
+    this.dispatchEvent(new Event('disabled-changed'));
+  }
+}
+
+customElements.define('my-element', MyElement);
+```
+
+The manifest would look like:
+
+`my-project/custom-elements.json`:
+```json
+{
+  "schemaVersion": "1.0.0",
+  "readme": "README.md",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "my-project/my-element.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "This is the description of the class",
+          "name": "MyElement",
+          "members": [
+            {
+              "kind": "field",
+              "name": "disabled"
+            },
+            {
+              "kind": "method",
+              "name": "fire"
+            }
+          ],
+          "events": [
+            {
+              "name": "disabled-changed",
+              "type": {
+                "text": "Event"
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "disabled"
+            }
+          ],
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "tagName": "my-element",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MyElement",
+          "declaration": {
+            "name": "MyElement",
+            "module": "my-project/my-element.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "my-element",
+          "declaration": {
+            "name": "MyElement",
+            "module": "my-project/my-element.js"
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
 # Motivation
 
 Many tools need some machine-readable descriptions of custom elements: IDEs, documentation viewers, linters, graphical design tools, etc.
