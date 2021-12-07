@@ -43,10 +43,14 @@ This version will not always match the npm package version, as some changes to t
 
 ## Example
 
-Given the following source code:
+Given the following source code in directory `my-project`:
 
+`my-project/my-element.js`:
 ```js
-class MyElement extends HTMLElement {
+/**
+ * This is the description of the class
+ */
+export class MyElement extends HTMLElement {
   static get observedAttributes() {
     return ['disabled'];
   }
@@ -66,11 +70,13 @@ class MyElement extends HTMLElement {
 customElements.define('my-element', MyElement);
 ```
 
-The output manifest would look like:
+The manifest would look like:
+
+`my-project/custom-elements.json`:
 ```json
 {
   "schemaVersion": "1.0.0",
-  "readme": "",
+  "readme": "README.md",
   "modules": [
     {
       "kind": "javascript-module",
@@ -78,7 +84,7 @@ The output manifest would look like:
       "declarations": [
         {
           "kind": "class",
-          "description": "",
+          "description": "This is the description of the class",
           "name": "MyElement",
           "members": [
             {
@@ -106,10 +112,19 @@ The output manifest would look like:
           "superclass": {
             "name": "HTMLElement"
           },
-          "tagName": "my-element"
+          "tagName": "my-element",
+          "customElement": true
         }
       ],
       "exports": [
+        {
+          "kind": "js",
+          "name": "MyElement",
+          "declaration": {
+            "name": "MyElement",
+            "module": "my-project/my-element.js"
+          }
+        },
         {
           "kind": "custom-element-definition",
           "name": "my-element",
