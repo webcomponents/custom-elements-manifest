@@ -40,6 +40,12 @@ export interface Package {
    * An array of the modules this package contains.
    */
   modules: Array<Module>;
+
+  /**
+   * Whether the package is deprecated.
+   * If the value is a string, it's the reason for the deprecation.
+   */
+  deprecated?: boolean|string;
 }
 
 // This type may expand in the future to include JSON, CSS, or HTML
@@ -75,6 +81,12 @@ export interface JavaScriptModule {
    * custom element definitions.
    */
   exports?: Array<Export>;
+  
+  /**
+   * Whether the module is deprecated.
+   * If the value is a string, it's the reason for the deprecation.
+   */
+  deprecated?: boolean|string;
 }
 
 export type Export = JavaScriptExport | CustomElementExport;
@@ -102,6 +114,12 @@ export interface JavaScriptExport {
    * defined and the `name` field must be `"*"`.
    */
   declaration: Reference;
+  
+  /**
+   * Whether the export is deprecated. For example, the name of the export was changed.
+   * If the value is a string, it's the reason for the deprecation.
+   */
+  deprecated?: boolean|string;
 }
 
 /**
@@ -124,6 +142,13 @@ export interface CustomElementExport {
    * custom element.
    */
   declaration: Reference;
+  
+  /**
+   * Whether the custom-element export is deprecated.
+   * For example, a future version will not register the custom element in this file.
+   * If the value is a string, it's the reason for the deprecation.
+   */
+  deprecated?: boolean|string;
 }
 
 export type Declaration =
@@ -226,6 +251,12 @@ export interface CustomElement extends ClassLike {
   customElement: true;
 
   members?: Array<CustomElementMember>;
+  
+  /**
+   * Whether the custom element is deprecated.
+   * If the value is a string, it's the reason for the deprecation.
+   */
+  deprecated?: boolean|string;
 }
 
 export type CustomElementMember = CustomElementField | ClassMethod;
@@ -262,6 +293,12 @@ export interface Attribute {
    * The name of the field this attribute is associated with, if any.
    */
   fieldName?: string;
+  
+  /**
+   * Whether the attribute is deprecated.
+   * If the value is a string, it's the reason for the deprecation.
+   */
+  deprecated?: boolean|string;
 }
 
 export interface Event {
@@ -283,6 +320,12 @@ export interface Event {
   type: Type;
 
   inheritedFrom?: Reference;
+  
+  /**
+   * Whether the event is deprecated.
+   * If the value is a string, it's the reason for the deprecation.
+   */
+  deprecated?: boolean|string;
 }
 
 export interface Slot {
@@ -300,6 +343,12 @@ export interface Slot {
    * A markdown description.
    */
   description?: string;
+  
+  /**
+   * Whether the slot is deprecated.
+   * If the value is a string, it's the reason for the deprecation.
+   */
+  deprecated?: boolean|string;
 }
 
 /**
@@ -317,6 +366,12 @@ export interface CssPart {
    * A markdown description.
    */
   description?: string;
+  
+  /**
+   * Whether the CSS shadow part is deprecated.
+   * If the value is a string, it's the reason for the deprecation.
+   */
+  deprecated?: boolean|string;
 }
 
 export interface CssCustomProperty {
@@ -351,6 +406,12 @@ export interface CssCustomProperty {
    * A markdown description.
    */
   description?: string;
+  
+  /**
+   * Whether the CSS custom property is deprecated.
+   * If the value is a string, it's the reason for the deprecation.
+   */
+  deprecated?: boolean|string;
 }
 
 export interface Type {
@@ -453,6 +514,12 @@ export interface ClassLike {
   members?: Array<ClassMember>;
 
   source?: SourceReference;
+  
+  /**
+   * Whether the class or mixin is deprecated.
+   * If the value is a string, it's the reason for the deprecation.
+   */
+  deprecated?: boolean|string;
 }
 
 export interface ClassDeclaration extends ClassLike {
@@ -481,6 +548,12 @@ export interface PropertyLike {
   type?: Type;
 
   default?: string;
+  
+  /**
+   * Whether the property is deprecated.
+   * If the value is a string, it's the reason for the deprecation.
+   */
+  deprecated?: boolean|string;
 }
 
 export interface ClassField extends PropertyLike {
