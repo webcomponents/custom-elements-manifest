@@ -593,9 +593,10 @@ export interface Parameter extends PropertyLike {
    */
   optional?: boolean;
   /**
-   * Whether the parameter is a spread. Undefined implies single parameter.
+   * Whether the parameter is a rest parameter. Only the last parameter may be a rest parameter.
+   * Undefined implies single parameter.
    */
-  spread?: boolean;
+  rest?: boolean;
 }
 
 export interface FunctionLike {
