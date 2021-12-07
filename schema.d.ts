@@ -42,7 +42,8 @@ export interface Package {
   modules: Array<Module>;
 
   /**
-   * Is this package deprecated? Provide a string to give a reason or migration instructions.
+   * Whether the package is deprecated.
+   * If the value is a string, it's the reason for the deprecation.
    */
   deprecated?: boolean|string;
 }
@@ -82,7 +83,8 @@ export interface JavaScriptModule {
   exports?: Array<Export>;
   
   /**
-   * Is this module deprecated? Provide a string to give a reason or migration instructions.
+   * Whether the module is deprecated.
+   * If the value is a string, it's the reason for the deprecation.
    */
   deprecated?: boolean|string;
 }
@@ -114,7 +116,8 @@ export interface JavaScriptExport {
   declaration: Reference;
   
   /**
-   * Is this export deprecated? Provide a string to give a reason or migration instructions.
+   * Whether the export is deprecated. For example, the name of the export was changed.
+   * If the value is a string, it's the reason for the deprecation.
    */
   deprecated?: boolean|string;
 }
@@ -141,7 +144,9 @@ export interface CustomElementExport {
   declaration: Reference;
   
   /**
-   * Is this export deprecated? Provide a string to give a reason or migration instructions.
+   * Whether the custom-element export is deprecated.
+   * For example, a future version will not register the custom element in this file.
+   * If the value is a string, it's the reason for the deprecation.
    */
   deprecated?: boolean|string;
 }
@@ -248,7 +253,8 @@ export interface CustomElement extends ClassLike {
   members?: Array<CustomElementMember>;
   
   /**
-   * Is this custom-element deprecated? Provide a string to give a reason or migration instructions.
+   * Whether the custom element is deprecated.
+   * If the value is a string, it's the reason for the deprecation.
    */
   deprecated?: boolean|string;
 }
@@ -289,7 +295,8 @@ export interface Attribute {
   fieldName?: string;
   
   /**
-   * Is this attribute deprecated? Provide a string to give a reason or migration instructions.
+   * Whether the attribute is deprecated.
+   * If the value is a string, it's the reason for the deprecation.
    */
   deprecated?: boolean|string;
 }
@@ -315,7 +322,8 @@ export interface Event {
   inheritedFrom?: Reference;
   
   /**
-   * Is this event deprecated? Provide a string to give a reason or migration instructions.
+   * Whether the event is deprecated.
+   * If the value is a string, it's the reason for the deprecation.
    */
   deprecated?: boolean|string;
 }
@@ -337,7 +345,8 @@ export interface Slot {
   description?: string;
   
   /**
-   * Is this slot deprecated? Provide a string to give a reason or migration instructions.
+   * Whether the slot is deprecated.
+   * If the value is a string, it's the reason for the deprecation.
    */
   deprecated?: boolean|string;
 }
@@ -359,7 +368,8 @@ export interface CssPart {
   description?: string;
   
   /**
-   * Is this part deprecated? Provide a string to give a reason or migration instructions.
+   * Whether the CSS shadow part is deprecated.
+   * If the value is a string, it's the reason for the deprecation.
    */
   deprecated?: boolean|string;
 }
@@ -398,7 +408,8 @@ export interface CssCustomProperty {
   description?: string;
   
   /**
-   * Is this property deprecated? Provide a string to give a reason or migration instructions.
+   * Whether the CSS custom property is deprecated.
+   * If the value is a string, it's the reason for the deprecation.
    */
   deprecated?: boolean|string;
 }
@@ -505,7 +516,8 @@ export interface ClassLike {
   source?: SourceReference;
   
   /**
-   * Is this class or mixin deprecated? Provide a string to give a reason or migration instructions.
+   * Whether the class or mixin is deprecated.
+   * If the value is a string, it's the reason for the deprecation.
    */
   deprecated?: boolean|string;
 }
@@ -538,7 +550,8 @@ export interface PropertyLike {
   default?: string;
   
   /**
-   * Is this deprecated? Provide a string to give a reason or migration instructions.
+   * Whether the property is deprecated.
+   * If the value is a string, it's the reason for the deprecation.
    */
   deprecated?: boolean|string;
 }
