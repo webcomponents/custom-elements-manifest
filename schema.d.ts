@@ -684,7 +684,13 @@ export interface FunctionLike {
    * A markdown description.
    */
   description?: string;
-
+  
+  /**
+   * Whether the function is deprecated.
+   * If the value is a string, it's the reason for the deprecation.
+   */
+  deprecated?: boolean|string;
+  
   parameters?: Parameter[];
 
   return?: {
