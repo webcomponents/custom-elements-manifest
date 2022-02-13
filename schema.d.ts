@@ -208,7 +208,9 @@ export interface SourceReference {
  * tagName, and another `Module` should contain the
  * `CustomElementExport`.
  */
-export type CustomElementDeclaration = ClassDeclaration & CustomElement;
+// Note: this needs to be an interface to be included in the generated JSON
+// Schema output.
+export interface CustomElementDeclaration extends ClassDeclaration, CustomElement {}
 
 /**
  * The additional fields that a custom element adds to classes and mixins.
@@ -249,17 +251,7 @@ export interface CustomElement extends ClassLike {
    * custom element class
    */
   customElement: true;
-
-  members?: Array<CustomElementMember>;
-  
-  /**
-   * Whether the custom element is deprecated.
-   * If the value is a string, it's the reason for the deprecation.
-   */
-  deprecated?: boolean|string;
 }
-
-export type CustomElementMember = CustomElementField | ClassMethod;
 
 export interface Attribute {
   name: string;
@@ -648,7 +640,9 @@ export interface MixinDeclaration extends ClassLike, FunctionLike {
 /**
  * A class mixin that also adds custom element related properties.
  */
-export type CustomElementMixinDeclaration = MixinDeclaration & CustomElement;
+// Note: this needs to be an interface to be included in the generated JSON
+// Schema output.
+export interface CustomElementMixinDeclaration extends MixinDeclaration, CustomElement {}
 
 export interface VariableDeclaration extends PropertyLike {
   kind: 'variable';
