@@ -2,10 +2,14 @@
   "name": "custom-elements-manifest",
   "version": "1.0.0",
   "description": "A file format for describing custom elements",
+  "type": "module",
   "main": "schema.json",
   "scripts": {
-    "format": "prettier schema.d.ts --write",
-    "build": "typescript-json-schema --required --ignoreErrors schema.d.ts -o schema.json Package",
+    "format": "prettier schema.d.ts src/**/*.ts --write",
+    "build": "npm run build:ts && npm run build:schema",
+    "build:ts": "tsc",
+    "build:schema": "typescript-json-schema --required --ignoreErrors schema.d.ts -o schema.json Package",
+    "test": "node ./test/schema_test.js",
     "prepublishOnly": "npm run build"
   },
   "files": [
@@ -24,8 +28,10 @@
   },
   "homepage": "https://github.com/webcomponents/custom-elements-manifest#readme",
   "devDependencies": {
+    "jsonschema": "^1.4.0",
     "prettier": "^2.2.1",
     "typescript": "~4.5.5",
-    "typescript-json-schema": "^0.53.0"
+    "typescript-json-schema": "^0.53.0",
+    "uvu": "^0.5.3"
   }
 }

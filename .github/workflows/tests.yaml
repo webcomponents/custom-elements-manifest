@@ -1,4 +1,5 @@
 name: Test
+
 on:
   push:
     branches: [ main ]
@@ -17,3 +18,5 @@ jobs:
       - run: npm run build
       - name: Check schema.json is up-to-date
         run: git diff --exit-code
+      - name: Run tests
+        run: npm test
