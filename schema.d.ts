@@ -55,6 +55,10 @@ export type Module = JavaScriptModule;
 export interface JavaScriptModule {
   kind: 'javascript-module';
 
+  /**
+   * Path to the javascript file needed to be imported. 
+   * (not the path for example to a typescript file.)
+   */
   path: string;
 
   /**
