@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "README.md",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "my-project/my-element.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "This is the description of the class",
+          "name": "MyElement",
+          "members": [
+            {
+              "kind": "field",
+              "name": "disabled"
+            },
+            {
+              "kind": "method",
+              "name": "fire"
+            }
+          ],
+          "events": [
+            {
+              "name": "disabled-changed",
+              "type": {
+                "text": "Event"
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "disabled"
+            }
+          ],
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "tagName": "my-element",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MyElement",
+          "declaration": {
+            "name": "MyElement",
+            "module": "my-project/my-element.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "my-element",
+          "declaration": {
+            "name": "MyElement",
+            "module": "my-project/my-element.js"
+          }
+        }
+      ]
+    }
+  ]
+}

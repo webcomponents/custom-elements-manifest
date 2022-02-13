@@ -6,6 +6,7 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
+    "rootDir": "./src/",
     "outDir": "./",
     "strict": true,
     "noUnusedLocals": true,
@@ -14,6 +15,6 @@
     "noFallthroughCasesInSwitch": true,
     "moduleResolution": "node",
   },
-  "include": ["*.ts"],
+  "include": ["schema.d.ts", "src/**/*.ts"],
   "exclude": []
 }
