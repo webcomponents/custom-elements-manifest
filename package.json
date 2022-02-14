@@ -16,6 +16,7 @@
     "schema.json",
     "schema.d.ts"
   ],
+  "types": "schema.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/webcomponents/custom-elements-manifest.git"
