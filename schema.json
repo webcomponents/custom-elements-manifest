@@ -190,6 +190,11 @@
                 "return": {
                     "properties": {
                         "description": {
+                            "description": "A markdown description.",
+                            "type": "string"
+                        },
+                        "summary": {
+                            "description": "A markdown summary suitable for display in a listing.",
                             "type": "string"
                         },
                         "type": {
@@ -511,6 +516,11 @@
                 "return": {
                     "properties": {
                         "description": {
+                            "description": "A markdown description.",
+                            "type": "string"
+                        },
+                        "summary": {
+                            "description": "A markdown summary suitable for display in a listing.",
                             "type": "string"
                         },
                         "type": {
@@ -633,6 +643,11 @@
                 "return": {
                     "properties": {
                         "description": {
+                            "description": "A markdown description.",
+                            "type": "string"
+                        },
+                        "summary": {
+                            "description": "A markdown summary suitable for display in a listing.",
                             "type": "string"
                         },
                         "type": {
@@ -812,6 +827,11 @@
                 "return": {
                     "properties": {
                         "description": {
+                            "description": "A markdown description.",
+                            "type": "string"
+                        },
+                        "summary": {
+                            "description": "A markdown summary suitable for display in a listing.",
                             "type": "string"
                         },
                         "type": {
