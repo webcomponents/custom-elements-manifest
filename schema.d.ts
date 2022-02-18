@@ -257,14 +257,6 @@ export interface CustomElement extends ClassLike {
    * custom element class
    */
   customElement: true;
-
-  // members?: Array<CustomElementMember>;
-
-  /**
-   * Whether the custom element is deprecated.
-   * If the value is a string, it's the reason for the deprecation.
-   */
-  deprecated?: boolean | string;
 }
 
 export interface Attribute {
@@ -694,6 +686,12 @@ export interface FunctionLike {
    * A markdown description.
    */
   description?: string;
+
+  /**
+   * Whether the function is deprecated.
+   * If the value is a string, it's the reason for the deprecation.
+   */
+  deprecated?: boolean | string;
 
   parameters?: Parameter[];
 

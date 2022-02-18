@@ -155,6 +155,13 @@
         },
         "ClassMethod": {
             "properties": {
+                "deprecated": {
+                    "description": "Whether the function is deprecated.\nIf the value is a string, it's the reason for the deprecation.",
+                    "type": [
+                        "string",
+                        "boolean"
+                    ]
+                },
                 "description": {
                     "description": "A markdown description.",
                     "type": "string"
@@ -597,6 +604,13 @@
         },
         "FunctionDeclaration": {
             "properties": {
+                "deprecated": {
+                    "description": "Whether the function is deprecated.\nIf the value is a string, it's the reason for the deprecation.",
+                    "type": [
+                        "string",
+                        "boolean"
+                    ]
+                },
                 "description": {
                     "description": "A markdown description.",
                     "type": "string"
@@ -732,6 +746,7 @@
                     "type": "string"
                 },
                 "path": {
+                    "description": "Path to the javascript file needed to be imported. \n(not the path for example to a typescript file.)",
                     "type": "string"
                 },
                 "summary": {
