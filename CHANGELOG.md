@@ -18,22 +18,29 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 <!-- ### Fixed -->
 
 <!-- ## [x.y.z] - YYYY-MM-DD -->
+
 ## Unreleased
+
 <!-- ### Changed -->
+
 ### Added
 
 - Added an optional `"syntax"` field to CSSCustomProperty to describe the property syntax using CSS Properties and Values API's syntax strings. Fixes
-https://github.com/webcomponents/custom-elements-manifest/issues/68
+  https://github.com/webcomponents/custom-elements-manifest/issues/68
 
-- Added CustomElementField that extends ClassField with the ability to
-  describe associated attributes. Fixes https://github.com/webcomponents/custom-elements-manifest/issues/36
+- Added CustomElementField that extends ClassField with the ability to describe associated attributes. Fixes https://github.com/webcomponents/custom-elements-manifest/issues/36 ([#75](https://github.com/webcomponents/custom-elements-manifest/pull/75))
 
-- Added a `"deprecated"` field to FunctionLike objects (functions and methods) ([#105](https://github.com/webcomponents/custom-elements-manifest/pull/105))
+- Added a `"deprecated"` field to all declarations (functions and methods) ([#89](https://github.com/webcomponents/custom-elements-manifest/pull/89), [#105](https://github.com/webcomponents/custom-elements-manifest/pull/105))
+
+- Added a `"rest"` field to parameters. ([#83](https://github.com/webcomponents/custom-elements-manifest/pull/83))
 
 <!-- ### Removed -->
+
 ### Fixed
 
-- Fixed how custom element declarations extend class declarations. Previously CustomElementDeclaration didn't include CustomElement properties, and MixinDeclaration required some CustomElement properties. Added new CustomElementMixinDeclaration interface. Fixes https://github.com/webcomponents/custom-elements-manifest/issues/69
+- Fixed how custom element declarations extend class declarations. Previously CustomElementDeclaration didn't include CustomElement properties, and MixinDeclaration required some CustomElement properties. Added new CustomElementMixinDeclaration interface. Fixes https://github.com/webcomponents/custom-elements-manifest/issues/69 ([#103](https://github.com/webcomponents/custom-elements-manifest/pull/103))
+
+- Clarified that module paths should point to importable files in the package. ([#104](https://github.com/webcomponents/custom-elements-manifest/pull/104))
 
 ## [1.0.0] - 2021-06-10
 
