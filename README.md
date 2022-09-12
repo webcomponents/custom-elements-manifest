@@ -121,16 +121,14 @@ The manifest would look like:
           "kind": "js",
           "name": "MyElement",
           "declaration": {
-            "name": "MyElement",
-            "module": "my-project/my-element.js"
+            "name": "MyElement"
           }
         },
         {
           "kind": "custom-element-definition",
           "name": "my-element",
           "declaration": {
-            "name": "MyElement",
-            "module": "my-project/my-element.js"
+            "name": "MyElement"
           }
         }
       ]
