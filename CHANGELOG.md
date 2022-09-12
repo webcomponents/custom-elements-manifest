@@ -28,6 +28,8 @@ https://github.com/webcomponents/custom-elements-manifest/issues/68
 - Added CustomElementField that extends ClassField with the ability to
   describe associated attributes. Fixes https://github.com/webcomponents/custom-elements-manifest/issues/36
 
+- Added a `"deprecated"` field to FunctionLike objects (functions and methods) ([#105](https://github.com/webcomponents/custom-elements-manifest/pull/105))
+
 <!-- ### Removed -->
 ### Fixed
 
