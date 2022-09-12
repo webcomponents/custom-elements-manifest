@@ -34,7 +34,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Added a `"rest"` field to parameters. ([#83](https://github.com/webcomponents/custom-elements-manifest/pull/83))
 
-- Added an optional `summary` field to Function and Method return types.
+- Added an optional `summary` field to Function and Method return types. ([#109](https://github.com/webcomponents/custom-elements-manifest/pull/109))
 
 <!-- ### Removed -->
 
