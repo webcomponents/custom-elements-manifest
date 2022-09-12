@@ -697,6 +697,15 @@ export interface FunctionLike {
 
   return?: {
     type?: Type;
+
+    /**
+     * A markdown summary suitable for display in a listing.
+     */
+    summary?: string;
+
+    /**
+     * A markdown description.
+     */
     description?: string;
   };
 }
