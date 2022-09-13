@@ -37,7 +37,7 @@ In order to allow tools to find npm packages with custom element manifests witho
 ## Schema Versioning
 
 The schema has a `schemaVersion` field in the top-level object to facilitate
-evolution of the schema. The schema follows [semver](https://semver.org/) versioning, the current schema version is `1.0.1`.
+evolution of the schema. The schema follows [semver](https://semver.org/) versioning, the current schema version is `2.0.0`.
 
 This version will not always match the npm package version, as some changes to the npm package might not have changes to the schema. We will publish a list of schema versions and their associated npm versions and git tags.
 
@@ -75,7 +75,7 @@ The manifest would look like:
 `my-project/custom-elements.json`:
 ```json
 {
-  "schemaVersion": "1.0.1",
+  "schemaVersion": "2.0.0",
   "readme": "README.md",
   "modules": [
     {
@@ -84,8 +84,10 @@ The manifest would look like:
       "declarations": [
         {
           "kind": "class",
-          "description": "This is the description of the class",
+          "customElement": true,
           "name": "MyElement",
+          "tagName": "my-element",
+          "description": "This is the description of the class",
           "members": [
             {
               "kind": "field",
@@ -111,9 +113,7 @@ The manifest would look like:
           ],
           "superclass": {
             "name": "HTMLElement"
-          },
-          "tagName": "my-element",
-          "customElement": true
+          }
         }
       ],
       "exports": [

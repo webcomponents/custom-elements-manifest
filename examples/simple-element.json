@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.0.1",
+  "schemaVersion": "2.0.0",
   "readme": "README.md",
   "modules": [
     {
@@ -7,9 +7,11 @@
       "path": "my-project/my-element.js",
       "declarations": [
         {
-          "kind": "class",
-          "description": "This is the description of the class",
+          "kind": "class",          
+          "customElement": true,
           "name": "MyElement",
+          "tagName": "my-element",
+          "description": "This is the description of the class",
           "members": [
             {
               "kind": "field",
@@ -35,9 +37,7 @@
           ],
           "superclass": {
             "name": "HTMLElement"
-          },
-          "tagName": "my-element",
-          "customElement": true
+          }
         }
       ],
       "exports": [
