@@ -1,6 +1,6 @@
 {
   "name": "custom-elements-manifest",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A file format for describing custom elements",
   "type": "module",
   "main": "schema.json",
@@ -31,8 +31,9 @@
   "devDependencies": {
     "jsonschema": "^1.4.0",
     "prettier": "^2.2.1",
-    "typescript": "~4.5.5",
-    "typescript-json-schema": "^0.53.0",
+    "tslib": "^2.4.0",
+    "typescript": "~4.8.0",
+    "typescript-json-schema": "^0.54.0",
     "uvu": "^0.5.3"
   }
 }
