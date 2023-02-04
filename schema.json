@@ -303,6 +303,13 @@
                     },
                     "type": "array"
                 },
+                "stylesheets" : {
+                    "description": "External Stylesheets wich should be loaded for the element.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
                 "customElement": {
                     "description": "Distinguishes a regular JavaScript class from a\ncustom element class",
                     "enum": [
