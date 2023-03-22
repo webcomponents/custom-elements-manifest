@@ -133,6 +133,10 @@
                 "privacy": {
                     "$ref": "#/definitions/Privacy"
                 },
+                "readonly": {
+                    "description": "Whether the property is read-only.",
+                    "type": "boolean"
+                },
                 "source": {
                     "$ref": "#/definitions/SourceReference"
                 },
@@ -881,6 +885,10 @@
                     "description": "Whether the parameter is optional. Undefined implies non-optional.",
                     "type": "boolean"
                 },
+                "readonly": {
+                    "description": "Whether the property is read-only.",
+                    "type": "boolean"
+                },
                 "rest": {
                     "description": "Whether the parameter is a rest parameter. Only the last parameter may be a rest parameter.\nUndefined implies single parameter.",
                     "type": "boolean"
@@ -1034,6 +1042,10 @@
                 },
                 "name": {
                     "type": "string"
+                },
+                "readonly": {
+                    "description": "Whether the property is read-only.",
+                    "type": "boolean"
                 },
                 "source": {
                     "$ref": "#/definitions/SourceReference"

@@ -552,6 +552,11 @@ export interface PropertyLike {
    * If the value is a string, it's the reason for the deprecation.
    */
   deprecated?: boolean | string;
+
+  /**
+   * Whether the property is read-only.
+   */
+  readonly?: boolean;
 }
 
 export interface ClassField extends PropertyLike {
