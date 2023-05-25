@@ -75,6 +75,7 @@ The manifest would look like:
 `my-project/custom-elements.json`:
 ```json
 {
+  "name": "my-element",
   "schemaVersion": "2.0.0",
   "readme": "README.md",
   "modules": [

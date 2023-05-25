@@ -23,6 +23,11 @@
  */
 export interface Package {
   /**
+   * The name of the schema, it's best to be unique.
+   */
+  name?: string;
+
+  /**
    * The version of the schema used in this file.
    */
   schemaVersion: string;
