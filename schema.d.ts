@@ -466,9 +466,9 @@ export interface ClassLike {
   /**
    * The superclass of this class.
    *
-   * If this class is defined with mixin
-   * applications, the prototype chain includes the mixin applications
-   * and the true superclass is computed from them.
+   * If this class is defined with mixin applications, the prototype chain
+   * includes the mixin applications and the true superclass is computed
+   * from them.
    */
   superclass?: Reference;
 
@@ -573,13 +573,16 @@ export interface ClassField extends PropertyLike {
 export interface CustomElementField extends ClassField {
   /**
    * The corresponding attribute name if there is one.
+   * 
+   * If this property is defined, the attribute must be listed in the classes'
+   * `attributes` array.
    */
   attribute?: string;
 
   /**
    * If the property reflects to an attribute.
    *
-   * If this is true, `attribute` must be defined.
+   * If this is true, the `attribute` property must be defined.
    */
   reflects?: boolean;
 }
