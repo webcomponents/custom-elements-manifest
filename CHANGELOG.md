@@ -17,7 +17,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 <!-- ### Removed -->
 <!-- ### Fixed -->
 
-<!-- ## [x.y.z] - YYYY-MM-DD -->
+## Unreleased
+
+### Fixed
+
+- Clarified that all attributes of a `CustomElement` must be listed in the the `attributes` array, even those reflected from a `CustomElementField`.
 
 ## [2.0.0] - 2022-09-12
 

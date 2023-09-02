@@ -93,7 +93,7 @@
                 },
                 "superclass": {
                     "$ref": "#/definitions/Reference",
-                    "description": "The superclass of this class.\n\nIf this class is defined with mixin\napplications, the prototype chain includes the mixin applications\nand the true superclass is computed from them."
+                    "description": "The superclass of this class.\n\nIf this class is defined with mixin applications, the prototype chain\nincludes the mixin applications and the true superclass is computed\nfrom them."
                 }
             },
             "required": [
@@ -383,7 +383,7 @@
                 },
                 "superclass": {
                     "$ref": "#/definitions/Reference",
-                    "description": "The superclass of this class.\n\nIf this class is defined with mixin\napplications, the prototype chain includes the mixin applications\nand the true superclass is computed from them."
+                    "description": "The superclass of this class.\n\nIf this class is defined with mixin applications, the prototype chain\nincludes the mixin applications and the true superclass is computed\nfrom them."
                 },
                 "tagName": {
                     "description": "An optional tag name that should be specified if this is a\nself-registering element.\n\nSelf-registering elements must also include a CustomElementExport\nin the module's exports.",
@@ -549,7 +549,7 @@
                 },
                 "superclass": {
                     "$ref": "#/definitions/Reference",
-                    "description": "The superclass of this class.\n\nIf this class is defined with mixin\napplications, the prototype chain includes the mixin applications\nand the true superclass is computed from them."
+                    "description": "The superclass of this class.\n\nIf this class is defined with mixin applications, the prototype chain\nincludes the mixin applications and the true superclass is computed\nfrom them."
                 },
                 "tagName": {
                     "description": "An optional tag name that should be specified if this is a\nself-registering element.\n\nSelf-registering elements must also include a CustomElementExport\nin the module's exports.",
@@ -853,7 +853,7 @@
                 },
                 "superclass": {
                     "$ref": "#/definitions/Reference",
-                    "description": "The superclass of this class.\n\nIf this class is defined with mixin\napplications, the prototype chain includes the mixin applications\nand the true superclass is computed from them."
+                    "description": "The superclass of this class.\n\nIf this class is defined with mixin applications, the prototype chain\nincludes the mixin applications and the true superclass is computed\nfrom them."
                 }
             },
             "required": [
