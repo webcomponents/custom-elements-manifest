@@ -56,7 +56,7 @@ export interface JavaScriptModule {
   kind: 'javascript-module';
 
   /**
-   * Path to the javascript file needed to be imported. 
+   * Path to the javascript file needed to be imported.
    * (not the path for example to a typescript file.)
    */
   path: string;
@@ -250,6 +250,8 @@ export interface CustomElement extends ClassLike {
 
   cssProperties?: CssCustomProperty[];
 
+  cssStates?: CssCustomState[];
+
   demos?: Demo[];
 
   /**
@@ -367,6 +369,29 @@ export interface CssPart {
 
   /**
    * Whether the CSS shadow part is deprecated.
+   * If the value is a string, it's the reason for the deprecation.
+   */
+  deprecated?: boolean | string;
+}
+
+/**
+ * The description of a CSS Custom State
+ */
+export interface CssCustomState {
+  name: string;
+
+  /**
+   * A markdown summary suitable for display in a listing.
+   */
+  summary?: string;
+
+  /**
+   * A markdown description.
+   */
+  description?: string;
+
+  /**
+   * Whether the CSS custom state is deprecated.
    * If the value is a string, it's the reason for the deprecation.
    */
   deprecated?: boolean | string;
@@ -573,7 +598,7 @@ export interface ClassField extends PropertyLike {
 export interface CustomElementField extends ClassField {
   /**
    * The corresponding attribute name if there is one.
-   * 
+   *
    * If this property is defined, the attribute must be listed in the classes'
    * `attributes` array.
    */
