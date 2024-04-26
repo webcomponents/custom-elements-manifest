@@ -376,8 +376,13 @@ export interface CssPart {
 
 /**
  * The description of a CSS Custom State
+ * https://developer.mozilla.org/en-US/docs/Web/API/CustomStateSet
  */
 export interface CssCustomState {
+  /**
+   * The name of the state. Note: Unlike CSS custom properties, custom states
+   * do not have a leading `--`.
+   */
   name: string;
 
   /**
