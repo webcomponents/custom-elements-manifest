@@ -259,7 +259,7 @@
             "type": "object"
         },
         "CssCustomState": {
-            "description": "The description of a CSS Custom State",
+            "description": "The description of a CSS Custom State\nhttps://developer.mozilla.org/en-US/docs/Web/API/CustomStateSet",
             "properties": {
                 "deprecated": {
                     "description": "Whether the CSS custom state is deprecated.\nIf the value is a string, it's the reason for the deprecation.",
@@ -273,6 +273,7 @@
                     "type": "string"
                 },
                 "name": {
+                    "description": "The name of the state. Note: Unlike CSS custom properties, custom states\ndo not have a leading `--`.",
                     "type": "string"
                 },
                 "summary": {
