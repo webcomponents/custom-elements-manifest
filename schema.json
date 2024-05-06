@@ -1128,6 +1128,9 @@
         "schemaVersion": {
             "description": "The version of the schema used in this file.",
             "type": "string"
+        },
+        "name": {
+            "description": "The name of the schema."
         }
     },
     "required": [
