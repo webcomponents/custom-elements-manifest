@@ -17,11 +17,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 <!-- ### Removed -->
 <!-- ### Fixed -->
 
-## Unreleased
+## [2.1.0] - 2024-05-16
+
+### Added
+
+- Added `readonly` flag to `PropertyLike`, the common interface of variables, class fields, and function parameters. ([#118](https://github.com/webcomponents/custom-elements-manifest/pull/#118))
+
+- Added support for describing the [CSS Custom State](https://developer.mozilla.org/en-US/docs/Web/API/CustomStateSet) of an element. ([#128](https://github.com/webcomponents/custom-elements-manifest/pull/128))
 
 ### Fixed
 
-- Clarified that all attributes of a `CustomElement` must be listed in the the `attributes` array, even those reflected from a `CustomElementField`.
+- Clarified that all attributes of a `CustomElement` must be listed in the the `attributes` array, even those reflected from a `CustomElementField`. ([#126](https://github.com/webcomponents/custom-elements-manifest/pull/126))
 
 ## [2.0.0] - 2022-09-12
 
