@@ -43,7 +43,7 @@ This version may not always match the npm package version, as some changes to th
 
 | Schema Version | Date       | npm Version | git Tag |
 | -------------- | ---------- | ----------- | ------- |
-| 2.1.0          | 2024-05-06 | 2.1.0       | v2.2.0  |
+| 2.1.0          | 2024-05-06 | 2.1.0       | v2.1.0  |
 | 2.0.0          | 2022-09-13 | 2.0.0       | v2.0.0  |
 
 ## Example
