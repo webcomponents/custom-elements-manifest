@@ -454,6 +454,10 @@
                 "name": {
                     "description": "The tag name of the custom element.",
                     "type": "string"
+                },
+                "sample": {
+                    "description": "Sample string for usage of the element.  (Could later be extended to a object with more samples if needed). The sample could also contain a element with children if this is needed as a sample.",
+                    "type": "string"
                 }
             },
             "required": [
