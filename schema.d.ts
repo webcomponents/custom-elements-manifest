@@ -259,6 +259,14 @@ export interface CustomElement extends ClassLike {
    * custom element class
    */
   customElement: true;
+
+  /**
+   * Distinguishes a form-associated custom element
+   * from a plain custom element. Form-associated custom
+   * elements can submit their values in a form when
+   * they have a `name` attribute.
+   */
+  formAssociated?: boolean;
 }
 
 export interface Attribute {
