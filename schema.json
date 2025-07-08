@@ -372,6 +372,13 @@
                     },
                     "type": "array"
                 },
+                "icons": {
+                    "description": "The icons that represent this element.",
+                    "items": {
+                        "$ref": "#/definitions/Icon"
+                    },
+                    "type": "array"
+                },
                 "kind": {
                     "enum": [
                         "class"
@@ -519,6 +526,13 @@
                     "description": "The events that this element fires.",
                     "items": {
                         "$ref": "#/definitions/Event"
+                    },
+                    "type": "array"
+                },
+                "icons": {
+                    "description": "The icons that represent this element.",
+                    "items": {
+                        "$ref": "#/definitions/Icon"
                     },
                     "type": "array"
                 },
@@ -711,6 +725,31 @@
             "required": [
                 "kind",
                 "name"
+            ],
+            "type": "object"
+        },
+        "Icon": {
+            "description": "Represents an icon for a Package or CustomElement to be used in a specific\ncontext. For example, you can add icons to represent your elements in\ndifferent tools such as documentation viewers, catalogs, or IDEs.\n\nThis interface follows the [Web App Manifest icons\nmember](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Manifest/Reference/icons).",
+            "properties": {
+                "purpose": {
+                    "description": "A case-sensitive keyword string that specifies one or more contexts in\nwhich the icon can be used a tool. The value can be a single keyword or\nmultiple space-separated keywords. If omitted, the tool can use the icon\nfor any purpose.\n\nTools use these values as hints to determine where and how an icon is\ndisplayed. For example, a monochrome icon might be used as a badge or\npinned icon with a solid fill, which is visually distinct from a full-color\nlaunch icon. With multiple keywords, say monochrome maskable, the tool\ncan use the icon for any of those purposes. If an unrecognized purpose is\nincluded along with valid values (e.g., monochrome fizzbuzz), the icon can\nstill be used for the valid purposes. However, if only unrecognized\npurposes are specified (e.g., fizzbuzz), then it will be ignored.\n\nValid values include:\n\n- `monochrome` Indicates that the icon is intended to be used as a\n  monochrome icon with a solid fill. With this value, a browser discards\n  the color information in the icon and uses only the alpha channel as a\n  mask over any solid fill.\n\n- `maskable` Indicates that the icon is designed with icon masks and safe\n  zone in mind, such that any part of the image outside the safe zone can\n  be ignored and masked away.\n\n- `any` Indicates that the icon can be used in any context. This is the\n  default value.",
+                    "type": "string"
+                },
+                "sizes": {
+                    "description": "A string that specifies one or more sizes at which the icon file can be\nused. Each size is specified as `<width in pixels>x<height in pixels>`. If\nmultiple sizes are specified, they are separated by spaces; for example,\n`48x48 96x96`. When multiple icons are available, tools may select the\nmost suitable icon for a particular display context. For raster formats\nlike PNG, specifying the exact available sizes is recommended. For vector\nformats like SVG, you can use any to indicate scalability. If `sizes` is\nnot specified, the selection and display of the icon may vary depending on\nthe tools's implementation.",
+                    "type": "string"
+                },
+                "src": {
+                    "description": "A string that specifies the path to the icon image file. The path is\nrelative to the package root. Icon files should be included in the\npackage.",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "A string that specifies the MIME type of the icon. The value should be in\nthe format image/<subtype>, where <subtype> is a specific image format; for\nexample, image/png indicates a PNG image. If omitted, tools typically\ninfer the image type from the file extension.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "src"
             ],
             "type": "object"
         },
@@ -1113,6 +1152,13 @@
                 "string",
                 "boolean"
             ]
+        },
+        "icons": {
+            "description": "The icons that represent this package.",
+            "items": {
+                "$ref": "#/definitions/Icon"
+            },
+            "type": "array"
         },
         "modules": {
             "description": "An array of the modules this package contains.",

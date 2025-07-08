@@ -17,6 +17,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 <!-- ### Removed -->
 <!-- ### Fixed -->
 
+<!-- ## [x.y.z] - YYYY-MM-DD -->
+## Unreleased
+<!-- ### Changed -->
+### Added
+
+- Added the `icons` field to `Package` and `CustomElement` to describe available
+  icons for those objects.
+
+<!-- ### Removed -->
+<!-- ### Fixed -->
+
+
 ## [2.1.0] - 2024-05-16
 
 ### Added

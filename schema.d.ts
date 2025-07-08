@@ -37,6 +37,11 @@ export interface Package {
   readme?: string;
 
   /**
+   * The icons that represent this package.
+   */
+  icons?: Array<Icon>;
+
+  /**
    * An array of the modules this package contains.
    */
   modules: Array<Module>;
@@ -46,6 +51,75 @@ export interface Package {
    * If the value is a string, it's the reason for the deprecation.
    */
   deprecated?: boolean | string;
+}
+
+/**
+ * Represents an icon for a Package or CustomElement to be used in a specific
+ * context. For example, you can add icons to represent your elements in
+ * different tools such as documentation viewers, catalogs, or IDEs.
+ *
+ * This interface follows the [Web App Manifest icons
+ * member](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Manifest/Reference/icons).
+ */
+export interface Icon {
+  /**
+   * A string that specifies the path to the icon image file. The path is
+   * relative to the package root. Icon files should be included in the
+   * package.
+   */
+  src: string;
+
+  /**
+   * A string that specifies one or more sizes at which the icon file can be
+   * used. Each size is specified as `<width in pixels>x<height in pixels>`. If
+   * multiple sizes are specified, they are separated by spaces; for example,
+   * `48x48 96x96`. When multiple icons are available, tools may select the
+   * most suitable icon for a particular display context. For raster formats
+   * like PNG, specifying the exact available sizes is recommended. For vector
+   * formats like SVG, you can use any to indicate scalability. If `sizes` is
+   * not specified, the selection and display of the icon may vary depending on
+   * the tools's implementation.
+   */
+  sizes?: string;
+
+  /**
+   * A string that specifies the MIME type of the icon. The value should be in
+   * the format image/<subtype>, where <subtype> is a specific image format; for
+   * example, image/png indicates a PNG image. If omitted, tools typically
+   * infer the image type from the file extension.
+   */
+  type?: string;
+
+  /**
+   * A case-sensitive keyword string that specifies one or more contexts in
+   * which the icon can be used a tool. The value can be a single keyword or
+   * multiple space-separated keywords. If omitted, the tool can use the icon
+   * for any purpose.
+   *
+   * Tools use these values as hints to determine where and how an icon is
+   * displayed. For example, a monochrome icon might be used as a badge or
+   * pinned icon with a solid fill, which is visually distinct from a full-color
+   * launch icon. With multiple keywords, say monochrome maskable, the tool
+   * can use the icon for any of those purposes. If an unrecognized purpose is
+   * included along with valid values (e.g., monochrome fizzbuzz), the icon can
+   * still be used for the valid purposes. However, if only unrecognized
+   * purposes are specified (e.g., fizzbuzz), then it will be ignored.
+   *
+   * Valid values include:
+   *
+   * - `monochrome` Indicates that the icon is intended to be used as a
+   *   monochrome icon with a solid fill. With this value, a browser discards
+   *   the color information in the icon and uses only the alpha channel as a
+   *   mask over any solid fill.
+   *
+   * - `maskable` Indicates that the icon is designed with icon masks and safe
+   *   zone in mind, such that any part of the image outside the safe zone can
+   *   be ignored and masked away.
+   *
+   * - `any` Indicates that the icon can be used in any context. This is the
+   *   default value.
+   */
+  purpose?: string;
 }
 
 // This type may expand in the future to include JSON, CSS, or HTML
@@ -230,6 +304,11 @@ export interface CustomElement extends ClassLike {
    * in the module's exports.
    */
   tagName?: string;
+
+  /**
+   * The icons that represent this element.
+   */
+  icons?: Array<Icon>;
 
   /**
    * The attributes that this element is known to understand.
