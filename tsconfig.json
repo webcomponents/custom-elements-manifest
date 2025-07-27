@@ -1,8 +1,10 @@
 {
+  "include": ["schema.d.ts", "src/**/*.ts"],
+  "exclude": [],
   "compilerOptions": {
-    "target": "es2017",
-    "module": "esnext",
-    "lib": ["es2017"],
+    "target": "es2022",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
@@ -13,8 +15,21 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "moduleResolution": "node",
+    "lib": [
+      "DOM.iterable",
+      "DOM",
+      "ES5",
+      "ES6",
+      "ES2020",
+      "ES2022",
+      "ES2024",
+      "ES2015.Generator",
+      "ESNext.Collection",
+      "ESNext.Array",
+      "ESNext.Iterator",
+      "ESNext.AsyncIterable",
+      "ESNext.Disposable",
+      "ScriptHost"
+    ],
   },
-  "include": ["schema.d.ts", "src/**/*.ts"],
-  "exclude": []
 }

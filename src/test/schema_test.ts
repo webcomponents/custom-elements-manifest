@@ -11,7 +11,7 @@
 import {test} from 'uvu';
 import * as assert from 'uvu/assert';
 import {Validator} from 'jsonschema';
-import * as fs from 'fs/promises';
+import * as fs from 'node:fs/promises';
 
 const schema = JSON.parse(await fs.readFile('./schema.json', 'utf-8'));
 

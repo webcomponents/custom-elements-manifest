@@ -8,9 +8,10 @@
     "format": "prettier schema.d.ts src/**/*.ts --write",
     "build": "npm run build:ts && npm run build:schema",
     "build:ts": "tsc",
-    "build:schema": "typescript-json-schema --required --ignoreErrors schema.d.ts -o schema.json Package",
+    "build:schema": "ts-json-schema-generator --path schema.d.ts -o schema.json --type Package",
     "test": "node ./test/schema_test.js",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "postinstall": "patch-package"
   },
   "files": [
     "schema.json",
@@ -29,11 +30,14 @@
   },
   "homepage": "https://github.com/webcomponents/custom-elements-manifest#readme",
   "devDependencies": {
-    "jsonschema": "^1.4.0",
+    "@types/node": "^24.0.15",
+    "ajv": "^8.17.1",
+    "jsonschema": "^1.5.0",
+    "patch-package": "^8.0.0",
     "prettier": "^2.2.1",
-    "tslib": "^2.4.0",
-    "typescript": "~4.8.0",
-    "typescript-json-schema": "^0.54.0",
-    "uvu": "^0.5.3"
+    "ts-json-schema-generator": "^2.4.0",
+    "tslib": "^2.8.1",
+    "typescript": "~5.8.3",
+    "uvu": "^0.5.6"
   }
 }

@@ -155,13 +155,16 @@ export interface CustomElementExport {
   deprecated?: boolean | string;
 }
 
+/**
+ * @discriminator kind
+ */
 export type Declaration =
-  | ClassDeclaration
   | FunctionDeclaration
-  | MixinDeclaration
   | VariableDeclaration
-  | CustomElementDeclaration
-  | CustomElementMixinDeclaration;
+  | /** @discriminator customElement */(MixinDeclaration
+  | CustomElementMixinDeclaration)
+  | /** @discriminator customElement */(ClassDeclaration
+  | CustomElementDeclaration)
 
 /**
  * A reference to an export of a module.
@@ -216,7 +219,16 @@ export interface SourceReference {
 // Schema output.
 export interface CustomElementDeclaration
   extends ClassDeclaration,
-    CustomElement {}
+    CustomElement {
+  members?: Array<
+  | ClassMethod
+  | /** @discriminator attribute */
+    (
+       CustomElementField
+     | ClassField
+    )
+  >;
+}
 
 /**
  * The additional fields that a custom element adds to classes and mixins.
@@ -688,7 +700,16 @@ export interface MixinDeclaration extends ClassLike, FunctionLike {
 // Schema output.
 export interface CustomElementMixinDeclaration
   extends MixinDeclaration,
-    CustomElement {}
+    CustomElement {
+  members?: Array<
+  | ClassMethod
+  | /** @discriminator attribute */
+    (
+       CustomElementField
+     | ClassField
+    )
+  >;
+}
 
 export interface VariableDeclaration extends PropertyLike {
   kind: 'variable';
