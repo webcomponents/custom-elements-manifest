@@ -224,6 +224,37 @@
             ],
             "type": "object"
         },
+        "Command": {
+            "description": "The description of a command that a custom element responds to.\nhttps://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API",
+            "properties": {
+                "deprecated": {
+                    "description": "Whether the command is deprecated.\nIf the value is a string, it's the reason for the deprecation.",
+                    "type": [
+                        "string",
+                        "boolean"
+                    ]
+                },
+                "description": {
+                    "description": "A markdown description of what the command does when invoked.",
+                    "type": "string"
+                },
+                "inheritedFrom": {
+                    "$ref": "#/definitions/Reference"
+                },
+                "name": {
+                    "description": "The name of the command, e.g. `--show-modal`.",
+                    "type": "string"
+                },
+                "summary": {
+                    "description": "A markdown summary suitable for display in a listing.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "type": "object"
+        },
         "CssCustomProperty": {
             "properties": {
                 "default": {
@@ -320,6 +351,12 @@
                     "description": "The attributes that this element is known to understand.",
                     "items": {
                         "$ref": "#/definitions/Attribute"
+                    },
+                    "type": "array"
+                },
+                "commands": {
+                    "items": {
+                        "$ref": "#/definitions/Command"
                     },
                     "type": "array"
                 },
