@@ -235,7 +235,7 @@
                     ]
                 },
                 "description": {
-                    "description": "A markdown description of what the command does when invoked.",
+                    "description": "A markdown description what the command does when invoked.",
                     "type": "string"
                 },
                 "inheritedFrom": {
@@ -355,6 +355,7 @@
                     "type": "array"
                 },
                 "commands": {
+                    "description": "The commands this element responds to.\nhttps://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API",
                     "items": {
                         "$ref": "#/definitions/Command"
                     },
@@ -507,6 +508,13 @@
                     "description": "The attributes that this element is known to understand.",
                     "items": {
                         "$ref": "#/definitions/Attribute"
+                    },
+                    "type": "array"
+                },
+                "commands": {
+                    "description": "The commands this element responds to.\nhttps://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API",
+                    "items": {
+                        "$ref": "#/definitions/Command"
                     },
                     "type": "array"
                 },
