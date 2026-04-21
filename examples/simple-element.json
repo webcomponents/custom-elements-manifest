@@ -35,6 +35,12 @@
               "name": "disabled"
             }
           ],
+          "commands": [
+            {
+              "name": "--show-modal",
+              "description": "Calls `showModal()` on the `<dialog>` element when invoked."
+            }
+          ],
           "superclass": {
             "name": "HTMLElement"
           }

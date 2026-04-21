@@ -252,6 +252,12 @@ export interface CustomElement extends ClassLike {
 
   cssStates?: CssCustomState[];
 
+  /**
+   * The commands this element responds to.
+   * https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API
+   */
+  commands?: Command[];
+
   demos?: Demo[];
 
   /**
@@ -397,6 +403,35 @@ export interface CssCustomState {
 
   /**
    * Whether the CSS custom state is deprecated.
+   * If the value is a string, it's the reason for the deprecation.
+   */
+  deprecated?: boolean | string;
+}
+
+/**
+ * The description of a command that a custom element responds to.
+ * https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API
+ */
+export interface Command {
+  /**
+   * The name of the command, e.g. `--show-modal`.
+   */
+  name: string;
+
+  /**
+   * A markdown summary suitable for display in a listing.
+   */
+  summary?: string;
+
+  /**
+   * A markdown description what the command does when invoked.
+   */
+  description?: string;
+
+  inheritedFrom?: Reference;
+
+  /**
+   * Whether the command is deprecated.
    * If the value is a string, it's the reason for the deprecation.
    */
   deprecated?: boolean | string;
