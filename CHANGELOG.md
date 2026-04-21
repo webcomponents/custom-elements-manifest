@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- Added `commands` array to `CustomElement` (and by extension `CustomElementDeclaration` and `CustomElementMixinDeclaration`) to document [Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) that a custom element responds to. ([#144](https://github.com/webcomponents/custom-elements-manifest/issues/144))
+- Added `commands` array to `CustomElementDeclaration` and `CustomElementMixinDeclaration` to document [Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) that a custom element responds to. ([#144](https://github.com/webcomponents/custom-elements-manifest/issues/144))
 
 ## [2.1.0] - 2024-05-16
 
