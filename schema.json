@@ -422,6 +422,69 @@
                 "tagName": {
                     "description": "An optional tag name that should be specified if this is a\nself-registering element.\n\nSelf-registering elements must also include a CustomElementExport\nin the module's exports.",
                     "type": "string"
+                },
+                "x-layer": {
+                    "description": "Whether the component can be server-rendered and/or hydrated.\n\n- \"server-only\": static DSD output, no hydration needed\n- \"server-hydratable\": DSD output + client-side event binding\n- \"client-only\": no DSD output, framework manages shadow root entirely",
+                    "enum": [
+                        "server-only",
+                        "server-hydratable",
+                        "client-only"
+                    ],
+                    "type": "string"
+                },
+                "x-render-dependencies": {
+                    "description": "Custom element tag names that must be registered before this component can be correctly rendered. Direct dependencies only — transitive dependencies are resolved by the consumer from the dependency graph.\n\nIf <my-card> renders <my-button> in its shadow DOM, <my-button> must be registered first or the nested element is silently skipped by the SSR engine. This field enables SSR engines to build a dependency graph and resolve registration order before rendering.",
+                    "items": {
+                        "type": "string",
+                        "pattern": "^[a-z][a-z0-9]*-[a-z0-9-]+$"
+                    },
+                    "type": "array"
+                },
+                "x-renderer": {
+                    "description": "Which template rendering backend the component requires.\n\n- \"lit\": Lit TemplateResult, needs a Lit-to-string adapter\n- \"vanilla\": plain string render() output\n- \"generic\": any other rendering approach",
+                    "enum": [
+                        "lit",
+                        "vanilla",
+                        "generic"
+                    ],
+                    "type": "string"
+                },
+                "x-shadow": {
+                    "description": "Shadow DOM configuration for Declarative Shadow DOM (DSD) output.\n\nMaps to WHATWG DSD template attributes: shadowrootmode, shadowrootclonable, shadowrootdelegatesfocus, shadowrootserializable, shadowrootslotassignment.",
+                    "properties": {
+                        "mode": {
+                            "description": "Shadow root mode.",
+                            "enum": [
+                                "open",
+                                "closed"
+                            ],
+                            "type": "string"
+                        },
+                        "clonable": {
+                            "description": "Whether the shadow root is clonable. Maps to shadowrootclonable DSD attribute.",
+                            "type": "boolean"
+                        },
+                        "delegatesFocus": {
+                            "description": "Whether the shadow root delegates focus. Maps to shadowrootdelegatesfocus DSD attribute.",
+                            "type": "boolean"
+                        },
+                        "serializable": {
+                            "description": "Whether the shadow root is serializable. Maps to shadowrootserializable DSD attribute.",
+                            "type": "boolean"
+                        },
+                        "slotAssignment": {
+                            "description": "Slot assignment mode. Maps to shadowrootslotassignment DSD attribute.",
+                            "enum": [
+                                "named",
+                                "manual"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "mode"
+                    ],
+                    "type": "object"
                 }
             },
             "required": [
@@ -594,6 +657,69 @@
                 "tagName": {
                     "description": "An optional tag name that should be specified if this is a\nself-registering element.\n\nSelf-registering elements must also include a CustomElementExport\nin the module's exports.",
                     "type": "string"
+                },
+                "x-layer": {
+                    "description": "Whether the component can be server-rendered and/or hydrated.\n\n- \"server-only\": static DSD output, no hydration needed\n- \"server-hydratable\": DSD output + client-side event binding\n- \"client-only\": no DSD output, framework manages shadow root entirely",
+                    "enum": [
+                        "server-only",
+                        "server-hydratable",
+                        "client-only"
+                    ],
+                    "type": "string"
+                },
+                "x-render-dependencies": {
+                    "description": "Custom element tag names that must be registered before this component can be correctly rendered. Direct dependencies only — transitive dependencies are resolved by the consumer from the dependency graph.\n\nIf <my-card> renders <my-button> in its shadow DOM, <my-button> must be registered first or the nested element is silently skipped by the SSR engine. This field enables SSR engines to build a dependency graph and resolve registration order before rendering.",
+                    "items": {
+                        "type": "string",
+                        "pattern": "^[a-z][a-z0-9]*-[a-z0-9-]+$"
+                    },
+                    "type": "array"
+                },
+                "x-renderer": {
+                    "description": "Which template rendering backend the component requires.\n\n- \"lit\": Lit TemplateResult, needs a Lit-to-string adapter\n- \"vanilla\": plain string render() output\n- \"generic\": any other rendering approach",
+                    "enum": [
+                        "lit",
+                        "vanilla",
+                        "generic"
+                    ],
+                    "type": "string"
+                },
+                "x-shadow": {
+                    "description": "Shadow DOM configuration for Declarative Shadow DOM (DSD) output.\n\nMaps to WHATWG DSD template attributes: shadowrootmode, shadowrootclonable, shadowrootdelegatesfocus, shadowrootserializable, shadowrootslotassignment.",
+                    "properties": {
+                        "mode": {
+                            "description": "Shadow root mode.",
+                            "enum": [
+                                "open",
+                                "closed"
+                            ],
+                            "type": "string"
+                        },
+                        "clonable": {
+                            "description": "Whether the shadow root is clonable. Maps to shadowrootclonable DSD attribute.",
+                            "type": "boolean"
+                        },
+                        "delegatesFocus": {
+                            "description": "Whether the shadow root delegates focus. Maps to shadowrootdelegatesfocus DSD attribute.",
+                            "type": "boolean"
+                        },
+                        "serializable": {
+                            "description": "Whether the shadow root is serializable. Maps to shadowrootserializable DSD attribute.",
+                            "type": "boolean"
+                        },
+                        "slotAssignment": {
+                            "description": "Slot assignment mode. Maps to shadowrootslotassignment DSD attribute.",
+                            "enum": [
+                                "named",
+                                "manual"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "mode"
+                    ],
+                    "type": "object"
                 }
             },
             "required": [
@@ -1136,4 +1262,3 @@
     ],
     "type": "object"
 }
-
