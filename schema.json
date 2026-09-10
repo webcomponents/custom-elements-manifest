@@ -422,6 +422,13 @@
                 "tagName": {
                     "description": "An optional tag name that should be specified if this is a\nself-registering element.\n\nSelf-registering elements must also include a CustomElementExport\nin the module's exports.",
                     "type": "string"
+                },
+                "x-render-dependencies": {
+                    "description": "An experimental extension listing the tag names of direct custom element\ndependencies referenced by this element's own render output.\n\nConsumers such as SSR and SSG tools can use these direct edges to build a\ndependency graph, resolve transitive dependencies, detect cycles, and\nprepare the required component definitions before rendering. Static\nanalysis may infer this metadata on a best-effort basis; producers can\nalso provide it explicitly when inference is incomplete.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
                 }
             },
             "required": [
@@ -594,6 +601,13 @@
                 "tagName": {
                     "description": "An optional tag name that should be specified if this is a\nself-registering element.\n\nSelf-registering elements must also include a CustomElementExport\nin the module's exports.",
                     "type": "string"
+                },
+                "x-render-dependencies": {
+                    "description": "An experimental extension listing the tag names of direct custom element\ndependencies referenced by this element's own render output.\n\nConsumers such as SSR and SSG tools can use these direct edges to build a\ndependency graph, resolve transitive dependencies, detect cycles, and\nprepare the required component definitions before rendering. Static\nanalysis may infer this metadata on a best-effort basis; producers can\nalso provide it explicitly when inference is incomplete.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
                 }
             },
             "required": [

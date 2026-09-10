@@ -11,9 +11,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 -->
 
 <!-- ## [x.y.z] - YYYY-MM-DD -->
-<!-- ## Unreleased -->
+## Unreleased
 <!-- ### Changed -->
-<!-- ### Added -->
+### Added
+
+- Added the experimental `x-render-dependencies` extension for describing direct custom element dependencies used during rendering. ([#148](https://github.com/webcomponents/custom-elements-manifest/pull/148))
+
 <!-- ### Removed -->
 <!-- ### Fixed -->
 

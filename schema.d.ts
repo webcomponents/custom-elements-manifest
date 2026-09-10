@@ -255,6 +255,18 @@ export interface CustomElement extends ClassLike {
   demos?: Demo[];
 
   /**
+   * An experimental extension listing the tag names of direct custom element
+   * dependencies referenced by this element's own render output.
+   *
+   * Consumers such as SSR and SSG tools can use these direct edges to build a
+   * dependency graph, resolve transitive dependencies, detect cycles, and
+   * prepare the required component definitions before rendering. Static
+   * analysis may infer this metadata on a best-effort basis; producers can
+   * also provide it explicitly when inference is incomplete.
+   */
+  'x-render-dependencies'?: string[];
+
+  /**
    * Distinguishes a regular JavaScript class from a
    * custom element class
    */
