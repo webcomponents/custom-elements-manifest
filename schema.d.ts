@@ -255,57 +255,16 @@ export interface CustomElement extends ClassLike {
   demos?: Demo[];
 
   /**
-   * Custom element tag names that must be registered before this component
-   * can be correctly rendered. Direct dependencies only — transitive
-   * dependencies are resolved by the consumer from the dependency graph.
+   * An experimental extension listing the tag names of direct custom element
+   * dependencies referenced by this element's own render output.
    *
-   * If `<my-card>` renders `<my-button>` in its shadow DOM, `<my-button>`
-   * must be registered first or the nested element is silently skipped by
-   * the SSR engine. This field enables SSR engines to build a dependency
-   * graph and resolve registration order before rendering.
-   *
-   * Auto-detectable: the analyzer can scan `render()` output HTML for
-   * custom element tag names matching `[a-z][a-z0-9]*-[a-z0-9-]+`.
+   * Consumers such as SSR and SSG tools can use these direct edges to build a
+   * dependency graph, resolve transitive dependencies, detect cycles, and
+   * prepare the required component definitions before rendering. Static
+   * analysis may infer this metadata on a best-effort basis; producers can
+   * also provide it explicitly when inference is incomplete.
    */
   'x-render-dependencies'?: string[];
-
-  /**
-   * Whether the component can be server-rendered and/or hydrated.
-   *
-   * - `"server-only"`: static DSD output, no hydration needed
-   * - `"server-hydratable"`: DSD output + client-side event binding
-   * - `"client-only"`: no DSD output, framework manages shadow root entirely
-   */
-  'x-layer'?: 'server-only' | 'server-hydratable' | 'client-only';
-
-  /**
-   * Shadow DOM configuration for Declarative Shadow DOM (DSD) output.
-   *
-   * Maps to WHATWG DSD template attributes: shadowrootmode,
-   * shadowrootclonable, shadowrootdelegatesfocus, shadowrootserializable,
-   * shadowrootslotassignment.
-   */
-  'x-shadow'?: {
-    /** Shadow root mode. */
-    mode: 'open' | 'closed';
-    /** Whether the shadow root is clonable. Maps to shadowrootclonable. */
-    clonable?: boolean;
-    /** Whether the shadow root delegates focus. Maps to shadowrootdelegatesfocus. */
-    delegatesFocus?: boolean;
-    /** Whether the shadow root is serializable. Maps to shadowrootserializable. */
-    serializable?: boolean;
-    /** Slot assignment mode. Maps to shadowrootslotassignment. */
-    slotAssignment?: 'named' | 'manual';
-  };
-
-  /**
-   * Which template rendering backend the component requires.
-   *
-   * - `"lit"`: Lit TemplateResult, needs a Lit-to-string adapter
-   * - `"vanilla"`: plain string render() output
-   * - `"generic"`: any other rendering approach
-   */
-  'x-renderer'?: 'lit' | 'vanilla' | 'generic';
 
   /**
    * Distinguishes a regular JavaScript class from a
